@@ -1,0 +1,22 @@
+This is the roman calculator coding exercise. It will leave a trail o frequent commits to help with review efforts.
+
+This implementation follows the next rules only:
+
+    - Roman numerals consist of the following letters: I, V, X, L, C, D, and M which mean one, five, ten, fifty, hundred, five hundred and one thousand respectively.
+    - As we are in Rome there are no such things as decimals or integers, we need to do this with the strings. An example would be "XIV" + "LX" = "LXXIV".
+    - Numerals can be concatenated to form a larger numeral ("XX" + "II" = "XXII").
+    - If a lesser numeral is put before a bigger it means subtraction of the lesser from the bigger ("IV" means four, "CM" means ninehundred).
+    - If the numeral is I, X or C you can't have more than three ("II" + "II" = "IV" not “IIII”).
+    - If the numeral is V, L or D you can't have more than one ("D" + "D" = "M" not “DD”).
+
+The calculator will convert character strings of roman numerals to integers internally, execute the requested computation, and convert the integer result back to a roman numeral character string.
+The solution won't have a maximum numberic limit it can handle, so the API will allocate a buffer that is big enough to represent the result, and the caller will be responsible for freeing the returned string.
+
+The following programs are expected to be installed in the system in order to compile and test:
+
+    - GNU GCC compiler.
+    - GNU Make.
+    - Check unit testing framework (https://libcheck.github.io/check).
+
+The subdirectory "src" should contain the "C" files used to create the libroman_calculator.a library.
+The subdirectory "unit-tests" should contain the "C" files used to create an executable that will test the libroman_calculator.a library.
