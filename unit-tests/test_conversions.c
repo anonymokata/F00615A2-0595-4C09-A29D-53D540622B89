@@ -1,3 +1,5 @@
+#include "../src/conversions.h"
+
 #include <stdlib.h>
 #include <check.h>
 #include <stdbool.h>
@@ -8,12 +10,19 @@ START_TEST(prove_check_framework_can_fail)
 }
 END_TEST
 
+START_TEST(numeral_value_will_return_zero_when_no_condition_is_met)
+{
+    ck_assert_int_eq(numeral_value(NULL), 0);
+}
+END_TEST
+
 Suite* roman_calculator_suite()
 {
     Suite *s = suite_create("Roman Calculator");
 
     TCase *tc_conversions = tcase_create("Conversion");
     tcase_add_exit_test(tc_conversions, prove_check_framework_can_fail, EXIT_FAILURE);
+    tcase_add_test(tc_conversions, numeral_value_will_return_zero_when_no_condition_is_met);
     suite_add_tcase(s, tc_conversions);
     return s;
 }
