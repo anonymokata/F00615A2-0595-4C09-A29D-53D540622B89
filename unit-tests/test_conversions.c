@@ -10,6 +10,31 @@ START_TEST(prove_check_framework_can_fail)
 }
 END_TEST
 
+START_TEST(test_ordered_sequence_of_roman_numerals)
+{
+    ck_assert_int_eq(0, INVALID_NUMERAL);
+    ck_assert_int_eq(1, I);
+    ck_assert_int_eq(4, IV);
+    ck_assert_int_eq(5, V);
+    ck_assert_int_eq(9, IX);
+    ck_assert_int_eq(10, X);
+    ck_assert_int_eq(40, XL);
+    ck_assert_int_eq(45, VL);
+    ck_assert_int_eq(50, L);
+    ck_assert_int_eq(90, XC);
+    ck_assert_int_eq(95, VC);
+    ck_assert_int_eq(100, C);
+    ck_assert_int_eq(400, CD);
+    ck_assert_int_eq(450, LD);
+    ck_assert_int_eq(495, VD);
+    ck_assert_int_eq(500, D);
+    ck_assert_int_eq(900, CM);
+    ck_assert_int_eq(950, LM);
+    ck_assert_int_eq(995, VM);
+    ck_assert_int_eq(1000, M);
+}
+END_TEST
+
 START_TEST(numeral_value_will_return_zero_when_no_condition_is_met)
 {
     ck_assert_int_eq(numeral_value(NULL), 0);
@@ -42,6 +67,7 @@ Suite* roman_calculator_suite()
 
     TCase *tc_conversions = tcase_create("Conversion");
     tcase_add_exit_test(tc_conversions, prove_check_framework_can_fail, EXIT_FAILURE);
+    tcase_add_test(tc_conversions, test_ordered_sequence_of_roman_numerals);
     tcase_add_test(tc_conversions, numeral_value_will_return_zero_when_no_condition_is_met);
     tcase_add_test(tc_conversions, numeral_value_will_return_one_when_letter_is_I);
     tcase_add_test(tc_conversions, numeral_value_will_return_four_when_letter_is_I_followed_by_V);

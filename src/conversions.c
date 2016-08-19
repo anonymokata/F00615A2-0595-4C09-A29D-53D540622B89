@@ -9,11 +9,11 @@ uint16_t numeral_value(const char* numeral)
     if(NULL != numeral)
     {
         if(*digit == ('I' | ('V' << 8)))
-            return 4;
+            return IV;
         if((*digit & 0xff) == 'I')
-            return 1;
+            return I;
         if((*digit & 0xff) == 'V')
-            return 5;
+            return V;
     }
-    return 0;
+    return INVALID_NUMERAL;
 }
