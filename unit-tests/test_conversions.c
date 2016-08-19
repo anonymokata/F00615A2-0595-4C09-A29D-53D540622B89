@@ -13,7 +13,7 @@ Suite* roman_calculator_suite()
     Suite *s = suite_create("Roman Calculator");
 
     TCase *tc_conversions = tcase_create("Conversion");
-    tcase_add_test(tc_conversions, prove_check_framework_can_fail);
+    tcase_add_exit_test(tc_conversions, prove_check_framework_can_fail, EXIT_FAILURE);
     suite_add_tcase(s, tc_conversions);
     return s;
 }
