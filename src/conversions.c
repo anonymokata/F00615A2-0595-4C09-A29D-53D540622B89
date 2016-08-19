@@ -17,6 +17,8 @@ uint16_t numeral_value(const char* numeral)
 
         if(pair == letter_pair("IV"))
             return IV;
+        if(pair == letter_pair("IX"))
+            return IX;
         if(letter == 'I')
             return I;
         if(letter == 'V')
