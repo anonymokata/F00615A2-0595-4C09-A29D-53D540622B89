@@ -4,19 +4,16 @@
 
 uint16_t numeral_value(const char* numeral)
 {
+    uint16_t* digit = (uint16_t*)numeral;
+
     if(NULL != numeral)
     {
-        if(*numeral == 'I')
-        {
-            if(numeral[1] == 'V')
-                return 4;
+        if(*digit == ('I' | ('V' << 8)))
+            return 4;
+        if((*digit & 0xff) == 'I')
             return 1;
-        }
-        else
-        {
-            if(*numeral == 'V')
-                return 5;
-        }
+        if((*digit & 0xff) == 'V')
+            return 5;
     }
     return 0;
 }
