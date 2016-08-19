@@ -27,6 +27,7 @@ typedef enum
     M = 1000
 } NUMERAL_TYPE;
 
+uint16_t letter_pair(const char* letter);
 uint16_t numeral_value(const char* numeral);
 
 #endif /* CONVERSIONS_H */
