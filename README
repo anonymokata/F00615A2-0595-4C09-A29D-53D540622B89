@@ -20,3 +20,8 @@ The following programs are expected to be installed in the system in order to co
 
 The subdirectory "src" should contain the "C" files used to create the libroman_calculator.a library.
 The subdirectory "unit-tests" should contain the "C" files used to create an executable that will test the libroman_calculator.a library.
+
+Building the library at a terminal:
+    - $make (to build the library).
+    - $make check (to build the library and run unit tests).
+    - $make clean (to remove files generated during build).
