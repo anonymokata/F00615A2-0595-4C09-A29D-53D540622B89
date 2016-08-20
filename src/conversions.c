@@ -13,6 +13,8 @@ uint16_t numeral_value(const char* numeral)
             return IV;
         if(pair == cIX)
             return IX;
+        if(pair == cXL)
+            return XL;
         if(letter == 'I')
             return I;
         if(letter == 'V')
