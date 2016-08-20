@@ -6,34 +6,37 @@ uint16_t numeral_value(const char* numeral)
 {
     if((NULL != numeral) && strlen(numeral))
     {
-        char letter = *numeral;
-        uint16_t pair = letter_pair(numeral);
-
-        if(pair == cIV)
-            return IV;
-        if(pair == cIX)
-            return IX;
-        if(pair == cXL)
-            return XL;
-        if(pair == cXC)
-            return XC;
-        if(pair == cCD)
-            return CD;
-        if(pair == cCM)
-            return CM;
-        if(letter == 'I')
+        if(numeral[0] == 'I')
+        {
+            if(numeral[1] == 'V')
+                return IV;
+            if(numeral[1] == 'X')
+                return IX;
             return I;
-        if(letter == 'V')
+        }
+        if(numeral[0] == 'V')
             return V;
-        if(letter == 'X')
+        if(numeral[0] == 'X')
+        {
+            if(numeral[1] == 'L')
+                return XL;
+            if(numeral[1] == 'C')
+                return XC;
             return X;
-        if(letter == 'L')
+        }
+        if(numeral[0] == 'L')
             return L;
-        if(letter == 'C')
+        if(numeral[0] == 'C')
+        {
+            if(numeral[1] == 'D')
+                return CD;
+            if(numeral[1] == 'M')
+                return CM;
             return C;
-        if(letter == 'D')
+        }
+        if(numeral[0] == 'D')
             return D;
-        if(letter == 'M')
+        if(numeral[0] == 'M')
             return M;
     }
     return INVALID_NUMERAL;

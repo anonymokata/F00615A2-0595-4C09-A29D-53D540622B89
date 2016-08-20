@@ -22,9 +22,6 @@ typedef enum
     M = 1000
 } NUMERAL_VALUE_TYPE;
 
-#define letter_pair(letter) \
-    ((letter[0] << 8) | letter[1])
-
 typedef enum
 {
     cIV = (('I' << 8) | 'V'),
