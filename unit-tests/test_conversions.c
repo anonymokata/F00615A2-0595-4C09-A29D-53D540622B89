@@ -115,6 +115,12 @@ START_TEST(numeral_value_will_return_nine_hundred_when_letter_is_C_followed_by_M
 }
 END_TEST
 
+START_TEST(numeral_value_will_return_one_thousand_when_letter_is_M)
+{
+    ck_assert_int_eq(numeral_value("M"), M);
+}
+END_TEST
+
 Suite* roman_calculator_suite()
 {
     Suite *s = suite_create("Roman Calculator");
@@ -136,6 +142,7 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, numeral_value_will_return_four_hundred_when_letter_is_C_followed_by_D);
     tcase_add_test(tc_conversions, numeral_value_will_return_five_hundred_when_letter_is_D);
     tcase_add_test(tc_conversions, numeral_value_will_return_nine_hundred_when_letter_is_C_followed_by_M);
+    tcase_add_test(tc_conversions, numeral_value_will_return_one_thousand_when_letter_is_M);
     suite_add_tcase(s, tc_conversions);
     return s;
 }

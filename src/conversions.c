@@ -33,6 +33,8 @@ uint16_t numeral_value(const char* numeral)
             return C;
         if(letter == 'D')
             return D;
+        if(letter == 'M')
+            return M;
     }
     return INVALID_NUMERAL;
 }
