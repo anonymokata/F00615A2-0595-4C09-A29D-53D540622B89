@@ -8,18 +8,36 @@ typedef enum
 {
     INVALID_NUMERAL,
     I,
-    IV = 4,
-    V = 5,
-    IX = 9,
-    X = 10,
-    XL = 40,
-    L = 50,
-    XC = 90,
-    C = 100,
-    CD = 400,
-    D = 500,
-    CM = 900,
-    M = 1000
+    IV,
+    V,
+    IX,
+    X,
+    XL,
+    L,
+    XC,
+    C,
+    CD,
+    D,
+    CM,
+    M
+} NUMERAL_INDEX_TYPE;
+
+typedef enum
+{
+    nINVALID_NUMERAL,
+    nI,
+    nIV = 4,
+    nV = 5,
+    nIX = 9,
+    nX = 10,
+    nXL = 40,
+    nL = 50,
+    nXC = 90,
+    nC = 100,
+    nCD = 400,
+    nD = 500,
+    nCM = 900,
+    nM = 1000
 } NUMERAL_VALUE_TYPE;
 
 typedef enum
