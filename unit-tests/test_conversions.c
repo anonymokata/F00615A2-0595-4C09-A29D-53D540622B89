@@ -48,6 +48,60 @@ START_TEST(test_roman_numeral_value_type)
 }
 END_TEST
 
+START_TEST(test_roman_numeral_info)
+{
+    ck_assert_int_eq(nINVALID_NUMERAL, numeral_info[INVALID_NUMERAL].value);
+    ck_assert_int_eq(0, numeral_info[INVALID_NUMERAL].letter_size);
+    ck_assert_int_eq(nI, numeral_info[I].value);
+    ck_assert_int_eq(1, numeral_info[I].letter_size);
+    ck_assert_int_eq(nIV, numeral_info[IV].value);
+    ck_assert_int_eq(2, numeral_info[IV].letter_size);
+    ck_assert_int_eq(nV, numeral_info[V].value);
+    ck_assert_int_eq(1, numeral_info[V].letter_size);
+    ck_assert_int_eq(nIX, numeral_info[IX].value);
+    ck_assert_int_eq(2, numeral_info[IX].letter_size);
+    ck_assert_int_eq(nX, numeral_info[X].value);
+    ck_assert_int_eq(1, numeral_info[X].letter_size);
+    ck_assert_int_eq(nXL, numeral_info[XL].value);
+    ck_assert_int_eq(2, numeral_info[XL].letter_size);
+    ck_assert_int_eq(nL, numeral_info[L].value);
+    ck_assert_int_eq(1, numeral_info[L].letter_size);
+    ck_assert_int_eq(nXC, numeral_info[XC].value);
+    ck_assert_int_eq(2, numeral_info[XC].letter_size);
+    ck_assert_int_eq(nC, numeral_info[C].value);
+    ck_assert_int_eq(1, numeral_info[C].letter_size);
+    ck_assert_int_eq(nCD, numeral_info[CD].value);
+    ck_assert_int_eq(2, numeral_info[CD].letter_size);
+    ck_assert_int_eq(nD, numeral_info[D].value);
+    ck_assert_int_eq(1, numeral_info[D].letter_size);
+    ck_assert_int_eq(nCM, numeral_info[CM].value);
+    ck_assert_int_eq(2, numeral_info[CM].letter_size);
+    ck_assert_int_eq(nM, numeral_info[M].value);
+    ck_assert_int_eq(1, numeral_info[M].letter_size);
+}
+END_TEST
+
+START_TEST(numeral_index_will_return_expected_indexes)
+{
+    ck_assert_int_eq(numeral_index(NULL), INVALID_NUMERAL);
+    ck_assert_int_eq(numeral_index(""), INVALID_NUMERAL);
+    ck_assert_int_eq(numeral_index("Z"), INVALID_NUMERAL);
+    ck_assert_int_eq(numeral_index("I"), I);
+    ck_assert_int_eq(numeral_index("IV"), IV);
+    ck_assert_int_eq(numeral_index("V"), V);
+    ck_assert_int_eq(numeral_index("IX"), IX);
+    ck_assert_int_eq(numeral_index("X"), X);
+    ck_assert_int_eq(numeral_index("XL"), XL);
+    ck_assert_int_eq(numeral_index("L"), L);
+    ck_assert_int_eq(numeral_index("XC"), XC);
+    ck_assert_int_eq(numeral_index("C"), C);
+    ck_assert_int_eq(numeral_index("CD"), CD);
+    ck_assert_int_eq(numeral_index("D"), D);
+    ck_assert_int_eq(numeral_index("CM"), CM);
+    ck_assert_int_eq(numeral_index("M"), M);
+}
+END_TEST
+
 START_TEST(numeral_value_will_return_expected_values)
 {
     ck_assert_int_eq(numeral_value(NULL), nINVALID_NUMERAL);
@@ -85,6 +139,8 @@ Suite* roman_calculator_suite()
     tcase_add_exit_test(tc_conversions, prove_check_framework_can_fail, EXIT_FAILURE);
     tcase_add_test(tc_conversions, test_roman_numeral_index_type);
     tcase_add_test(tc_conversions, test_roman_numeral_value_type);
+    tcase_add_test(tc_conversions, test_roman_numeral_info);
+    tcase_add_test(tc_conversions, numeral_index_will_return_expected_indexes);
     tcase_add_test(tc_conversions, numeral_value_will_return_expected_values);
     tcase_add_test(tc_conversions, numeral_to_uint_will_return_INVALID_NUMERAL_when_no_condition_is_met);
     suite_add_tcase(s, tc_conversions);

@@ -19,7 +19,8 @@ typedef enum
     CD,
     D,
     CM,
-    M
+    M,
+    NUMBER_OF_NUMERALS
 } NUMERAL_INDEX_TYPE;
 
 typedef enum
@@ -50,7 +51,16 @@ typedef enum
     cCM = (('C' << 8) | 'M')
 } CHARACTER_PAIR_TYPE;
 
+typedef struct
+{
+    const NUMERAL_VALUE_TYPE value;
+    const unsigned char letter_size;
+} NUMERAL_INFO_TYPE;
+
+uint16_t numeral_index(const char* numeral);
 uint16_t numeral_value(const char* numeral);
 unsigned int numeral_to_uint(const char* numeral);
+
+extern const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS];
 
 #endif /* CONVERSIONS_H */
