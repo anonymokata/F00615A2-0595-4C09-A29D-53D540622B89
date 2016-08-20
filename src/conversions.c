@@ -19,6 +19,8 @@ uint16_t numeral_value(const char* numeral)
             return XC;
         if(pair == cCD)
             return CD;
+        if(pair == cCM)
+            return CM;
         if(letter == 'I')
             return I;
         if(letter == 'V')
