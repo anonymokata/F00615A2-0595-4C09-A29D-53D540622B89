@@ -29,12 +29,6 @@ START_TEST(test_ordered_sequence_of_roman_numerals)
 }
 END_TEST
 
-START_TEST(letter_pair_keeps_original_byte_order)
-{
-    ck_assert_int_eq(letter_pair("01"), 0x3031);
-}
-END_TEST
-
 START_TEST(numeral_value_will_return_INVALID_NUMERAL_when_no_condition_is_met)
 {
     ck_assert_int_eq(numeral_value(NULL), INVALID_NUMERAL);
@@ -128,7 +122,6 @@ Suite* roman_calculator_suite()
     TCase *tc_conversions = tcase_create("Conversion");
     tcase_add_exit_test(tc_conversions, prove_check_framework_can_fail, EXIT_FAILURE);
     tcase_add_test(tc_conversions, test_ordered_sequence_of_roman_numerals);
-    tcase_add_test(tc_conversions, letter_pair_keeps_original_byte_order);
     tcase_add_test(tc_conversions, numeral_value_will_return_INVALID_NUMERAL_when_no_condition_is_met);
     tcase_add_test(tc_conversions, numeral_value_will_return_one_when_letter_is_I);
     tcase_add_test(tc_conversions, numeral_value_will_return_four_when_letter_is_I_followed_by_V);
