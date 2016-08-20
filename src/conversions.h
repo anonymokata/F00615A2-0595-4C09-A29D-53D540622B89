@@ -2,6 +2,7 @@
 #define CONVERSIONS_H
 
 #include <stdint.h>
+#include <string.h>
 
 typedef enum
 {
@@ -12,22 +13,28 @@ typedef enum
     IX = 9,
     X = 10,
     XL = 40,
-    VL = 45,
     L = 50,
     XC = 90,
-    VC = 95,
     C = 100,
     CD = 400,
-    LD = 450,
-    VD = 495,
     D = 500,
     CM = 900,
-    LM = 950,
-    VM = 995,
     M = 1000
-} NUMERAL_TYPE;
+} NUMERAL_VALUE_TYPE;
 
-uint16_t letter_pair(const char* letter);
+#define letter_pair(letter) \
+    ((letter[0] << 8) | letter[1])
+
+typedef enum
+{
+    cIV = (('I' << 8) | 'V'),
+    cIX = (('I' << 8) | 'X'),
+    cXL = (('X' << 8) | 'L'),
+    cXC = (('X' << 8) | 'C'),
+    cCD = (('C' << 8) | 'D'),
+    cCM = (('C' << 8) | 'M')
+} CHARACTER_PAIR_TYPE;
+
 uint16_t numeral_value(const char* numeral);
 
 #endif /* CONVERSIONS_H */

@@ -19,18 +19,12 @@ START_TEST(test_ordered_sequence_of_roman_numerals)
     ck_assert_int_eq(9, IX);
     ck_assert_int_eq(10, X);
     ck_assert_int_eq(40, XL);
-    ck_assert_int_eq(45, VL);
     ck_assert_int_eq(50, L);
     ck_assert_int_eq(90, XC);
-    ck_assert_int_eq(95, VC);
     ck_assert_int_eq(100, C);
     ck_assert_int_eq(400, CD);
-    ck_assert_int_eq(450, LD);
-    ck_assert_int_eq(495, VD);
     ck_assert_int_eq(500, D);
     ck_assert_int_eq(900, CM);
-    ck_assert_int_eq(950, LM);
-    ck_assert_int_eq(995, VM);
     ck_assert_int_eq(1000, M);
 }
 END_TEST

@@ -1,12 +1,6 @@
 #include "conversions.h"
 
 #include <stdlib.h>
-#include <string.h>
-
-uint16_t letter_pair(const char* letter)
-{
-    return ((letter[0] << 8) | letter[1]);
-}
 
 uint16_t numeral_value(const char* numeral)
 {
@@ -15,9 +9,9 @@ uint16_t numeral_value(const char* numeral)
         char letter = *numeral;
         uint16_t pair = letter_pair(numeral);
 
-        if(pair == letter_pair("IV"))
+        if(pair == cIV)
             return IV;
-        if(pair == letter_pair("IX"))
+        if(pair == cIX)
             return IX;
         if(letter == 'I')
             return I;
