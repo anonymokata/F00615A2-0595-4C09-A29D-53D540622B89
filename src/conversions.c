@@ -41,3 +41,8 @@ uint16_t numeral_value(const char* numeral)
     }
     return INVALID_NUMERAL;
 }
+
+unsigned int numeral_to_uint(const char* numeral)
+{
+    return INVALID_NUMERAL;
+}

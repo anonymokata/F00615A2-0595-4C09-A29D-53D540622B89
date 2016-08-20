@@ -33,5 +33,6 @@ typedef enum
 } CHARACTER_PAIR_TYPE;
 
 uint16_t numeral_value(const char* numeral);
+unsigned int numeral_to_uint(const char* numeral);
 
 #endif /* CONVERSIONS_H */
