@@ -25,6 +25,8 @@ uint16_t numeral_value(const char* numeral)
             return X;
         if(letter == 'L')
             return L;
+        if(letter == 'C')
+            return C;
     }
     return INVALID_NUMERAL;
 }
