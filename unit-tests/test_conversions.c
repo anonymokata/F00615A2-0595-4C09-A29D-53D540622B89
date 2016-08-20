@@ -79,6 +79,12 @@ START_TEST(numeral_value_will_return_forty_when_letter_is_X_followed_by_L)
 }
 END_TEST
 
+START_TEST(numeral_value_will_return_fifty_when_letter_is_L)
+{
+    ck_assert_int_eq(numeral_value("L"), L);
+}
+END_TEST
+
 Suite* roman_calculator_suite()
 {
     Suite *s = suite_create("Roman Calculator");
@@ -94,6 +100,7 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, numeral_value_will_return_nine_when_letter_is_I_followed_by_X);
     tcase_add_test(tc_conversions, numeral_value_will_return_ten_when_letter_is_X);
     tcase_add_test(tc_conversions, numeral_value_will_return_forty_when_letter_is_X_followed_by_L);
+    tcase_add_test(tc_conversions, numeral_value_will_return_fifty_when_letter_is_L);
     suite_add_tcase(s, tc_conversions);
     return s;
 }
