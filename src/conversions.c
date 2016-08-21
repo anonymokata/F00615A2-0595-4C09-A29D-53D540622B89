@@ -42,10 +42,10 @@ uint16_t numeral_value(const char** numeral)
     return numeral_info[index].value;
 }
 
-unsigned int numeral_to_uint(const char* numeral)
+uint16_t numeral_to_uint(const char* numeral)
 {
     const char* p = numeral;
-    unsigned int acc = 0;
+    uint16_t acc = 0;
 
     if(NULL != numeral)
     {
@@ -57,7 +57,7 @@ unsigned int numeral_to_uint(const char* numeral)
     return acc;
 }
 
-const char* numeral(unsigned int value)
+const char* numeral(uint16_t value)
 {
     NUMERAL_INDEX_TYPE index;
 
@@ -71,10 +71,10 @@ const char* numeral(unsigned int value)
     return numeral_info[INVALID_NUMERAL].numeral;
 }
 
-char* uint_to_numeral(unsigned int value)
+char* uint_to_numeral(uint16_t value)
 {
     NUMERAL_INDEX_TYPE index;
-    char* numeral = malloc(4);
+    char* numeral = malloc(80);
     char* end = numeral;
 
     numeral[0] = 0;
@@ -84,6 +84,7 @@ char* uint_to_numeral(unsigned int value)
         {
             strcpy(end, numeral_info[index].numeral);
             end += numeral_info[index].letter_size;
+            *end = 0;
             value -= numeral_info[index].value;
             if((V != index) && (L != index) && (D != index))
             {
