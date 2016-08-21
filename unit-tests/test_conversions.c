@@ -97,7 +97,6 @@ END_TEST
 
 START_TEST(numeral_index_will_return_expected_indexes)
 {
-    ck_assert_int_eq(numeral_index(NULL), INVALID_NUMERAL);
     ck_assert_int_eq(numeral_index(""), INVALID_NUMERAL);
     ck_assert_int_eq(numeral_index("Z"), INVALID_NUMERAL);
     ck_assert_int_eq(numeral_index("I"), I);
@@ -118,10 +117,8 @@ END_TEST
 
 START_TEST(numeral_value_will_return_expected_values)
 {
-    const char* p = NULL;
-    uint8_t i;
-    
-    ck_assert_int_eq(numeral_value(&p), nINVALID_NUMERAL);
+    const char* p;
+    NUMERAL_INDEX_TYPE i;
     
     for(i = INVALID_NUMERAL; i < NUMBER_OF_NUMERALS; i++)
     {

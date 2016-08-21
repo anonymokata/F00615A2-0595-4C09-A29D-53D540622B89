@@ -24,23 +24,20 @@ NUMERAL_INDEX_TYPE numeral_index(const char* numeral)
 {
     NUMERAL_INDEX_TYPE index;
 
-    if((NULL != numeral) && strlen(numeral))
+    for(index = IV; index < NUMBER_OF_NUMERALS; index++)
     {
-        for(index = IV; index < NUMBER_OF_NUMERALS; index++)
+        if(numeral[0] == numeral_info[index].numeral[0])
         {
-            if(numeral[0] == numeral_info[index].numeral[0])
+            if(2 == numeral_info[index].letter_size)
             {
-                if(2 == numeral_info[index].letter_size)
-                {
-                    if(numeral[1] == numeral_info[index].numeral[1])
-                    {
-                        return index;
-                    }
-                }
-                else
+                if(numeral[1] == numeral_info[index].numeral[1])
                 {
                     return index;
                 }
+            }
+            else
+            {
+                return index;
             }
         }
     }
