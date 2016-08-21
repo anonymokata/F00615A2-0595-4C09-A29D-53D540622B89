@@ -70,3 +70,10 @@ const char* numeral(unsigned int value)
     }
     return numeral_info[INVALID_NUMERAL].numeral;
 }
+
+char* uint_to_numeral(unsigned int value)
+{
+    char* numeral = malloc(1);
+    numeral[0] = 0;
+    return numeral;
+}
