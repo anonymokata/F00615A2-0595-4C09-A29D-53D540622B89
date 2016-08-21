@@ -198,6 +198,20 @@ START_TEST(uint_to_numeral_function_will_return_a_dynamically_allocated_string)
 }
 END_TEST
 
+START_TEST(uint_to_numeral_function_will_return_expected_combined_numerals)
+{
+    char* numeral;
+
+    numeral = uint_to_numeral(3);
+    ck_assert_str_eq(numeral, "III");
+    free(numeral);
+
+    numeral = uint_to_numeral(8);
+    ck_assert_str_eq(numeral, "VIII");
+    free(numeral);
+}
+END_TEST
+
 Suite* roman_calculator_suite()
 {
     Suite *s = suite_create("Roman Calculator");
@@ -215,6 +229,7 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, numeral_function_will_return_an_empty_string_for_values_that_do_not_have_a_corresponding_numeral);
     tcase_add_test(tc_conversions, numeral_function_will_return_expected_numerals);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_a_dynamically_allocated_string);
+    tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_expected_combined_numerals);
     suite_add_tcase(s, tc_conversions);
     return s;
 }

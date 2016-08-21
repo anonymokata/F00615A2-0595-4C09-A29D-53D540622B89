@@ -73,7 +73,23 @@ const char* numeral(unsigned int value)
 
 char* uint_to_numeral(unsigned int value)
 {
-    char* numeral = malloc(1);
+    NUMERAL_INDEX_TYPE index;
+    char* numeral = malloc(4);
+    char* end = numeral;
+
     numeral[0] = 0;
+    for(index = M; (0 < value) && (INVALID_NUMERAL < index); index--)
+    {
+        if(0 != (value / numeral_info[index].value))
+        {
+            strcpy(end, numeral_info[index].numeral);
+            end += numeral_info[index].letter_size;
+            value -= numeral_info[index].value;
+            if((V != index) && (L != index) && (D != index))
+            {
+                index++;
+            }
+        }
+    }
     return numeral;
 }
