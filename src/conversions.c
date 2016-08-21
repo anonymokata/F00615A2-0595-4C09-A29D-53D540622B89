@@ -66,3 +66,17 @@ unsigned int numeral_to_uint(const char* numeral)
     }
     return acc;
 }
+
+const char* numeral(unsigned int value)
+{
+    NUMERAL_INDEX_TYPE index;
+
+    for(index = IV; index < NUMBER_OF_NUMERALS; index++)
+    {
+        if(value == numeral_info[index].value)
+        {
+            return numeral_info[index].numeral;
+        }
+    }
+    return numeral_info[INVALID_NUMERAL].numeral;
+}

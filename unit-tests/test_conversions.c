@@ -164,6 +164,19 @@ START_TEST(numeral_to_uint_will_return_expected_unsigned_integers)
 }
 END_TEST
 
+START_TEST(numeral_function_will_return_an_empty_string_for_values_that_do_not_have_a_numeral)
+{
+    ck_assert_str_eq(numeral(2), "");
+}
+END_TEST
+
+START_TEST(numeral_function_will_return_expected_numerals)
+{
+    ck_assert_str_eq(numeral(0), "");
+    ck_assert_str_eq(numeral(1), "I");
+}
+END_TEST
+
 Suite* roman_calculator_suite()
 {
     Suite *s = suite_create("Roman Calculator");
@@ -178,6 +191,8 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, numeral_value_will_advance_numeral_pointer_to_indicate_next_numeral);
     tcase_add_test(tc_conversions, numeral_to_uint_will_return_zero_when_no_condition_is_met);
     tcase_add_test(tc_conversions, numeral_to_uint_will_return_expected_unsigned_integers);
+    tcase_add_test(tc_conversions, numeral_function_will_return_an_empty_string_for_values_that_do_not_have_a_numeral);
+    tcase_add_test(tc_conversions, numeral_function_will_return_expected_numerals);
     suite_add_tcase(s, tc_conversions);
     return s;
 }
