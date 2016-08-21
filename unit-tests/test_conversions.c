@@ -95,7 +95,7 @@ START_TEST(test_roman_numeral_info)
 }
 END_TEST
 
-START_TEST(numeral_index_will_return_expected_indexes)
+START_TEST(numeral_index_function_will_return_expected_indexes)
 {
     ck_assert_int_eq(numeral_index(""), INVALID_NUMERAL);
     ck_assert_int_eq(numeral_index("Z"), INVALID_NUMERAL);
@@ -115,7 +115,7 @@ START_TEST(numeral_index_will_return_expected_indexes)
 }
 END_TEST
 
-START_TEST(numeral_value_will_return_expected_values)
+START_TEST(numeral_value_function_will_return_expected_values)
 {
     const char* p;
     NUMERAL_INDEX_TYPE i;
@@ -128,7 +128,7 @@ START_TEST(numeral_value_will_return_expected_values)
 }
 END_TEST
 
-START_TEST(numeral_value_will_advance_numeral_pointer_to_indicate_next_numeral)
+START_TEST(numeral_value_function_will_advance_numeral_pointer_to_indicate_next_numeral)
 {
     const char one_letter_numeral[] = "I";
     const char two_letters_numeral[] = "IV";
@@ -146,7 +146,7 @@ START_TEST(numeral_value_will_advance_numeral_pointer_to_indicate_next_numeral)
 }
 END_TEST
 
-START_TEST(numeral_to_uint_will_return_zero_when_no_condition_is_met)
+START_TEST(numeral_to_uint_function_will_return_zero_when_no_condition_is_met)
 {
     ck_assert_int_eq(numeral_to_uint(NULL), 0);
     ck_assert_int_eq(numeral_to_uint(""), 0);
@@ -154,7 +154,7 @@ START_TEST(numeral_to_uint_will_return_zero_when_no_condition_is_met)
 }
 END_TEST
 
-START_TEST(numeral_to_uint_will_return_expected_unsigned_integers)
+START_TEST(numeral_to_uint_function_will_return_expected_unsigned_integers)
 {
     ck_assert_int_eq(numeral_to_uint("I"), 1);
     ck_assert_int_eq(numeral_to_uint("III"), 3);
@@ -164,7 +164,7 @@ START_TEST(numeral_to_uint_will_return_expected_unsigned_integers)
 }
 END_TEST
 
-START_TEST(numeral_to_uint_will_wrap_around_numerals_bigger_than_65535)
+START_TEST(numeral_to_uint_function_will_wrap_around_the_value_of_numerals_bigger_than_65535)
 {
     ck_assert_int_eq(numeral_to_uint("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMDXXXVII"), 1);
 }
@@ -237,12 +237,12 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, test_roman_numeral_index_type);
     tcase_add_test(tc_conversions, test_roman_numeral_value_type);
     tcase_add_test(tc_conversions, test_roman_numeral_info);
-    tcase_add_test(tc_conversions, numeral_index_will_return_expected_indexes);
-    tcase_add_test(tc_conversions, numeral_value_will_return_expected_values);
-    tcase_add_test(tc_conversions, numeral_value_will_advance_numeral_pointer_to_indicate_next_numeral);
-    tcase_add_test(tc_conversions, numeral_to_uint_will_return_zero_when_no_condition_is_met);
-    tcase_add_test(tc_conversions, numeral_to_uint_will_return_expected_unsigned_integers);
-    tcase_add_test(tc_conversions, numeral_to_uint_will_wrap_around_numerals_bigger_than_65535);
+    tcase_add_test(tc_conversions, numeral_index_function_will_return_expected_indexes);
+    tcase_add_test(tc_conversions, numeral_value_function_will_return_expected_values);
+    tcase_add_test(tc_conversions, numeral_value_function_will_advance_numeral_pointer_to_indicate_next_numeral);
+    tcase_add_test(tc_conversions, numeral_to_uint_function_will_return_zero_when_no_condition_is_met);
+    tcase_add_test(tc_conversions, numeral_to_uint_function_will_return_expected_unsigned_integers);
+    tcase_add_test(tc_conversions, numeral_to_uint_function_will_wrap_around_the_value_of_numerals_bigger_than_65535);
     tcase_add_test(tc_conversions, numeral_function_will_return_an_empty_string_for_values_that_do_not_have_a_corresponding_numeral);
     tcase_add_test(tc_conversions, numeral_function_will_return_expected_numerals);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_a_dynamically_allocated_string);
