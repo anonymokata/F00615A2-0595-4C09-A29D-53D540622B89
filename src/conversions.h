@@ -65,5 +65,6 @@ const char* numeral(uint16_t value);
 char* uint_to_numeral(uint16_t value);
 
 extern const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS];
+const uint8_t numeral_info_ordered_index[NUMBER_OF_NUMERALS];
 
 #endif /* CONVERSIONS_H */

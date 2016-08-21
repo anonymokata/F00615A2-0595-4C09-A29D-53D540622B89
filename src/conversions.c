@@ -20,6 +20,8 @@ const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS] =
     { nM,               1, "M"  }
 };
 
+const uint8_t numeral_info_ordered_index[NUMBER_OF_NUMERALS] = {0, 3, 1, 4, 2, 7, 5, 8, 6, 11, 9, 12, 10, 13};
+
 NUMERAL_INDEX_TYPE numeral_index(const char* numeral)
 {
     NUMERAL_INDEX_TYPE index;
@@ -73,13 +75,14 @@ const char* numeral(uint16_t value)
 
 char* uint_to_numeral(uint16_t value)
 {
-    NUMERAL_INDEX_TYPE index;
+    uint8_t i, index;
     char* numeral = malloc(80);
     char* end = numeral;
 
     numeral[0] = 0;
-    for(index = M; (0 < value) && (INVALID_NUMERAL < index); index--)
+    for(i = NUMBER_OF_NUMERALS - 1; (0 < value) && (0 < i); i--)
     {
+        index = numeral_info_ordered_index[i];
         if(0 != (value / numeral_info[index].value))
         {
             strcpy(end, numeral_info[index].numeral);
@@ -88,7 +91,7 @@ char* uint_to_numeral(uint16_t value)
             value -= numeral_info[index].value;
             if((V != index) && (L != index) && (D != index))
             {
-                index++;
+                i++;
             }
         }
     }
