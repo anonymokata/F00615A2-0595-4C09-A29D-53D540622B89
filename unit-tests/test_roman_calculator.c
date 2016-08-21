@@ -4,6 +4,8 @@
 START_TEST(add_function_will_return_NULL_when_function_parameters_are_invalid)
 {
     ck_assert_ptr_eq(NULL, add(NULL, "I"));
+    ck_assert_ptr_eq(NULL, add("I", NULL));
+    ck_assert_ptr_eq(NULL, add(NULL, NULL));
 }
 END_TEST
 
