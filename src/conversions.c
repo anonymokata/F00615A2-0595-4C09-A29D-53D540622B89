@@ -4,23 +4,23 @@
 
 const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS] =
 {
-    { nINVALID_NUMERAL, 0},
-    { nI,    1},
-    { nIV,   2},
-    { nV,    1},
-    { nIX,   2},
-    { nX,    1},
-    { nXL,   2},
-    { nL,    1},
-    { nXC,   2},
-    { nC,    1},
-    { nCD,   2},
-    { nD,    1},
-    { nCM,   2},
-    { nM,    1}
+    { nINVALID_NUMERAL, 0, ""   },
+    { nI,               1, "I"  },
+    { nIV,              2, "IV" },
+    { nV,               1, "V"  },
+    { nIX,              2, "IX" },
+    { nX,               1, "X"  },
+    { nXL,              2, "XL" },
+    { nL,               1, "L"  },
+    { nXC,              2, "XC" },
+    { nC,               1, "C"  },
+    { nCD,              2, "CD" },
+    { nD,               1, "D"  },
+    { nCM,              2, "CM" },
+    { nM,               1, "M"  }
 };
 
-uint16_t numeral_index(const char* numeral)
+uint8_t numeral_index(const char* numeral)
 {
     if((NULL != numeral) && strlen(numeral))
     {
@@ -60,9 +60,12 @@ uint16_t numeral_index(const char* numeral)
     return INVALID_NUMERAL;
 }
 
-uint16_t numeral_value(const char* numeral)
+uint16_t numeral_value(const char** numeral)
 {
-    return numeral_info[numeral_index(numeral)].value;
+    uint8_t index = numeral_index(*numeral);
+
+    *numeral += numeral_info[index].letter_size;
+    return numeral_info[index].value;
 }
 
 unsigned int numeral_to_uint(const char* numeral)

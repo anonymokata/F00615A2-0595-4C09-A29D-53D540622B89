@@ -52,32 +52,46 @@ START_TEST(test_roman_numeral_info)
 {
     ck_assert_int_eq(nINVALID_NUMERAL, numeral_info[INVALID_NUMERAL].value);
     ck_assert_int_eq(0, numeral_info[INVALID_NUMERAL].letter_size);
+    ck_assert_str_eq("", numeral_info[INVALID_NUMERAL].numeral);
     ck_assert_int_eq(nI, numeral_info[I].value);
     ck_assert_int_eq(1, numeral_info[I].letter_size);
+    ck_assert_str_eq("I", numeral_info[I].numeral);
     ck_assert_int_eq(nIV, numeral_info[IV].value);
     ck_assert_int_eq(2, numeral_info[IV].letter_size);
+    ck_assert_str_eq("IV", numeral_info[IV].numeral);
     ck_assert_int_eq(nV, numeral_info[V].value);
     ck_assert_int_eq(1, numeral_info[V].letter_size);
+    ck_assert_str_eq("V", numeral_info[V].numeral);
     ck_assert_int_eq(nIX, numeral_info[IX].value);
     ck_assert_int_eq(2, numeral_info[IX].letter_size);
+    ck_assert_str_eq("IX", numeral_info[IX].numeral);
     ck_assert_int_eq(nX, numeral_info[X].value);
     ck_assert_int_eq(1, numeral_info[X].letter_size);
+    ck_assert_str_eq("X", numeral_info[X].numeral);
     ck_assert_int_eq(nXL, numeral_info[XL].value);
     ck_assert_int_eq(2, numeral_info[XL].letter_size);
+    ck_assert_str_eq("XL", numeral_info[XL].numeral);
     ck_assert_int_eq(nL, numeral_info[L].value);
     ck_assert_int_eq(1, numeral_info[L].letter_size);
+    ck_assert_str_eq("L", numeral_info[L].numeral);
     ck_assert_int_eq(nXC, numeral_info[XC].value);
     ck_assert_int_eq(2, numeral_info[XC].letter_size);
+    ck_assert_str_eq("XC", numeral_info[XC].numeral);
     ck_assert_int_eq(nC, numeral_info[C].value);
     ck_assert_int_eq(1, numeral_info[C].letter_size);
+    ck_assert_str_eq("C", numeral_info[C].numeral);
     ck_assert_int_eq(nCD, numeral_info[CD].value);
     ck_assert_int_eq(2, numeral_info[CD].letter_size);
+    ck_assert_str_eq("CD", numeral_info[CD].numeral);
     ck_assert_int_eq(nD, numeral_info[D].value);
     ck_assert_int_eq(1, numeral_info[D].letter_size);
+    ck_assert_str_eq("D", numeral_info[D].numeral);
     ck_assert_int_eq(nCM, numeral_info[CM].value);
     ck_assert_int_eq(2, numeral_info[CM].letter_size);
+    ck_assert_str_eq("CM", numeral_info[CM].numeral);
     ck_assert_int_eq(nM, numeral_info[M].value);
     ck_assert_int_eq(1, numeral_info[M].letter_size);
+    ck_assert_str_eq("M", numeral_info[M].numeral);
 }
 END_TEST
 
@@ -104,22 +118,30 @@ END_TEST
 
 START_TEST(numeral_value_will_return_expected_values)
 {
-    ck_assert_int_eq(numeral_value(NULL), nINVALID_NUMERAL);
-    ck_assert_int_eq(numeral_value(""), nINVALID_NUMERAL);
-    ck_assert_int_eq(numeral_value("Z"), nINVALID_NUMERAL);
-    ck_assert_int_eq(numeral_value("I"), nI);
-    ck_assert_int_eq(numeral_value("IV"), nIV);
-    ck_assert_int_eq(numeral_value("V"), nV);
-    ck_assert_int_eq(numeral_value("IX"), nIX);
-    ck_assert_int_eq(numeral_value("X"), nX);
-    ck_assert_int_eq(numeral_value("XL"), nXL);
-    ck_assert_int_eq(numeral_value("L"), nL);
-    ck_assert_int_eq(numeral_value("XC"), nXC);
-    ck_assert_int_eq(numeral_value("C"), nC);
-    ck_assert_int_eq(numeral_value("CD"), nCD);
-    ck_assert_int_eq(numeral_value("D"), nD);
-    ck_assert_int_eq(numeral_value("CM"), nCM);
-    ck_assert_int_eq(numeral_value("M"), nM);
+    const char* p = NULL;
+    uint8_t i;
+    
+    ck_assert_int_eq(numeral_value(&p), nINVALID_NUMERAL);
+    
+    for(i = INVALID_NUMERAL; i < NUMBER_OF_NUMERALS; i++)
+    {
+        p = numeral_info[i].numeral;
+        ck_assert_int_eq(numeral_value(&p), numeral_info[i].value);
+    }
+}
+END_TEST
+
+START_TEST(numeral_value_will_advance_numeral_pointer_to_indicate_next_numeral)
+{
+    const char one_letter_numeral[] = "I";
+    const char two_letters_numeral[] = "IV";
+    const char* p = one_letter_numeral;
+
+    numeral_value(&p);
+    ck_assert_int_eq(strlen(p), 0);
+    p = two_letters_numeral;
+    numeral_value(&p);
+    ck_assert_int_eq(strlen(p), 0);
 }
 END_TEST
 
@@ -142,6 +164,7 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, test_roman_numeral_info);
     tcase_add_test(tc_conversions, numeral_index_will_return_expected_indexes);
     tcase_add_test(tc_conversions, numeral_value_will_return_expected_values);
+    tcase_add_test(tc_conversions, numeral_value_will_advance_numeral_pointer_to_indicate_next_numeral);
     tcase_add_test(tc_conversions, numeral_to_uint_will_return_INVALID_NUMERAL_when_no_condition_is_met);
     suite_add_tcase(s, tc_conversions);
     return s;

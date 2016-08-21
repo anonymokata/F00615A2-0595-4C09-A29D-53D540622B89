@@ -55,10 +55,11 @@ typedef struct
 {
     const NUMERAL_VALUE_TYPE value;
     const unsigned char letter_size;
+    const char numeral[];
 } NUMERAL_INFO_TYPE;
 
-uint16_t numeral_index(const char* numeral);
-uint16_t numeral_value(const char* numeral);
+uint8_t numeral_index(const char* numeral);
+uint16_t numeral_value(const char** numeral);
 unsigned int numeral_to_uint(const char* numeral);
 
 extern const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS];
