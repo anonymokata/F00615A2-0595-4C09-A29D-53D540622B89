@@ -51,7 +51,7 @@ END_TEST
 START_TEST(test_roman_numeral_info)
 {
     ck_assert_int_eq(nINVALID_NUMERAL, numeral_info[INVALID_NUMERAL].value);
-    ck_assert_int_eq(0, numeral_info[INVALID_NUMERAL].letter_size);
+    ck_assert_int_eq(1, numeral_info[INVALID_NUMERAL].letter_size);
     ck_assert_str_eq("", numeral_info[INVALID_NUMERAL].numeral);
     ck_assert_int_eq(nI, numeral_info[I].value);
     ck_assert_int_eq(1, numeral_info[I].letter_size);
@@ -135,6 +135,7 @@ START_TEST(numeral_value_will_advance_numeral_pointer_to_indicate_next_numeral)
 {
     const char one_letter_numeral[] = "I";
     const char two_letters_numeral[] = "IV";
+    const char invalid_numeral[] = "Z";
     const char* p = one_letter_numeral;
 
     numeral_value(&p);
@@ -142,14 +143,27 @@ START_TEST(numeral_value_will_advance_numeral_pointer_to_indicate_next_numeral)
     p = two_letters_numeral;
     numeral_value(&p);
     ck_assert_int_eq(strlen(p), 0);
+    p = invalid_numeral;
+    numeral_value(&p);
+    ck_assert_int_eq(strlen(p), 0);
 }
 END_TEST
 
-START_TEST(numeral_to_uint_will_return_INVALID_NUMERAL_when_no_condition_is_met)
+START_TEST(numeral_to_uint_will_return_zero_when_no_condition_is_met)
 {
-    ck_assert_int_eq(numeral_to_uint(NULL), INVALID_NUMERAL);
-    ck_assert_int_eq(numeral_to_uint(""), INVALID_NUMERAL);
-    ck_assert_int_eq(numeral_to_uint("Z"), INVALID_NUMERAL);
+    ck_assert_int_eq(numeral_to_uint(NULL), 0);
+    ck_assert_int_eq(numeral_to_uint(""), 0);
+    ck_assert_int_eq(numeral_to_uint("Z"), 0);
+}
+END_TEST
+
+START_TEST(numeral_to_uint_will_return_expected_unsigned_integers)
+{
+    ck_assert_int_eq(numeral_to_uint("I"), 1);
+    ck_assert_int_eq(numeral_to_uint("III"), 3);
+    ck_assert_int_eq(numeral_to_uint("VIII"), 8);
+    ck_assert_int_eq(numeral_to_uint("DCCCLXXXVIII"), 888);
+    ck_assert_int_eq(numeral_to_uint("MMMM"), 4000);
 }
 END_TEST
 
@@ -165,7 +179,8 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, numeral_index_will_return_expected_indexes);
     tcase_add_test(tc_conversions, numeral_value_will_return_expected_values);
     tcase_add_test(tc_conversions, numeral_value_will_advance_numeral_pointer_to_indicate_next_numeral);
-    tcase_add_test(tc_conversions, numeral_to_uint_will_return_INVALID_NUMERAL_when_no_condition_is_met);
+    tcase_add_test(tc_conversions, numeral_to_uint_will_return_zero_when_no_condition_is_met);
+    tcase_add_test(tc_conversions, numeral_to_uint_will_return_expected_unsigned_integers);
     suite_add_tcase(s, tc_conversions);
     return s;
 }

@@ -4,7 +4,7 @@
 
 const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS] =
 {
-    { nINVALID_NUMERAL, 0, ""   },
+    { nINVALID_NUMERAL, 1, ""   },
     { nI,               1, "I"  },
     { nIV,              2, "IV" },
     { nV,               1, "V"  },
@@ -70,5 +70,15 @@ uint16_t numeral_value(const char** numeral)
 
 unsigned int numeral_to_uint(const char* numeral)
 {
-    return nINVALID_NUMERAL;
+    const char* p = numeral;
+    unsigned int acc = 0;
+
+    if(NULL != numeral)
+    {
+        while(strlen(p))
+        {
+            acc += numeral_value(&p);
+        }
+    }
+    return acc;
 }
