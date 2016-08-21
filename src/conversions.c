@@ -5,57 +5,44 @@
 const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS] =
 {
     { nINVALID_NUMERAL, 1, ""   },
-    { nI,               1, "I"  },
     { nIV,              2, "IV" },
-    { nV,               1, "V"  },
     { nIX,              2, "IX" },
-    { nX,               1, "X"  },
+    { nI,               1, "I"  },
+    { nV,               1, "V"  },
     { nXL,              2, "XL" },
-    { nL,               1, "L"  },
     { nXC,              2, "XC" },
-    { nC,               1, "C"  },
+    { nX,               1, "X"  },
+    { nL,               1, "L"  },
     { nCD,              2, "CD" },
-    { nD,               1, "D"  },
     { nCM,              2, "CM" },
+    { nC,               1, "C"  },
+    { nD,               1, "D"  },
     { nM,               1, "M"  }
 };
 
-uint8_t numeral_index(const char* numeral)
+NUMERAL_INDEX_TYPE numeral_index(const char* numeral)
 {
+    NUMERAL_INDEX_TYPE index;
+
     if((NULL != numeral) && strlen(numeral))
     {
-        if(numeral[0] == 'I')
+        for(index = IV; index < NUMBER_OF_NUMERALS; index++)
         {
-            if(numeral[1] == 'V')
-                return IV;
-            if(numeral[1] == 'X')
-                return IX;
-            return I;
+            if(numeral[0] == numeral_info[index].numeral[0])
+            {
+                if(2 == numeral_info[index].letter_size)
+                {
+                    if(numeral[1] == numeral_info[index].numeral[1])
+                    {
+                        return index;
+                    }
+                }
+                else
+                {
+                    return index;
+                }
+            }
         }
-        if(numeral[0] == 'V')
-            return V;
-        if(numeral[0] == 'X')
-        {
-            if(numeral[1] == 'L')
-                return XL;
-            if(numeral[1] == 'C')
-                return XC;
-            return X;
-        }
-        if(numeral[0] == 'L')
-            return L;
-        if(numeral[0] == 'C')
-        {
-            if(numeral[1] == 'D')
-                return CD;
-            if(numeral[1] == 'M')
-                return CM;
-            return C;
-        }
-        if(numeral[0] == 'D')
-            return D;
-        if(numeral[0] == 'M')
-            return M;
     }
     return INVALID_NUMERAL;
 }

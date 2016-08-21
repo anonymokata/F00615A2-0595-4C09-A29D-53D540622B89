@@ -13,18 +13,18 @@ END_TEST
 START_TEST(test_roman_numeral_index_type)
 {
     ck_assert_int_eq(0, INVALID_NUMERAL);
-    ck_assert_int_eq(1, I);
-    ck_assert_int_eq(2, IV);
-    ck_assert_int_eq(3, V);
-    ck_assert_int_eq(4, IX);
-    ck_assert_int_eq(5, X);
-    ck_assert_int_eq(6, XL);
-    ck_assert_int_eq(7, L);
-    ck_assert_int_eq(8, XC);
-    ck_assert_int_eq(9, C);
-    ck_assert_int_eq(10, CD);
-    ck_assert_int_eq(11, D);
-    ck_assert_int_eq(12, CM);
+    ck_assert_int_eq(1, IV);
+    ck_assert_int_eq(2, IX);
+    ck_assert_int_eq(3, I);
+    ck_assert_int_eq(4, V);
+    ck_assert_int_eq(5, XL);
+    ck_assert_int_eq(6, XC);
+    ck_assert_int_eq(7, X);
+    ck_assert_int_eq(8, L);
+    ck_assert_int_eq(9, CD);
+    ck_assert_int_eq(10, CM);
+    ck_assert_int_eq(11, C);
+    ck_assert_int_eq(12, D);
     ck_assert_int_eq(13, M);
 }
 END_TEST

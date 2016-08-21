@@ -7,18 +7,18 @@
 typedef enum
 {
     INVALID_NUMERAL,
-    I,
     IV,
-    V,
     IX,
-    X,
+    I,
+    V,
     XL,
-    L,
     XC,
-    C,
+    X,
+    L,
     CD,
-    D,
     CM,
+    C,
+    D,
     M,
     NUMBER_OF_NUMERALS
 } NUMERAL_INDEX_TYPE;
@@ -58,7 +58,7 @@ typedef struct
     const char numeral[];
 } NUMERAL_INFO_TYPE;
 
-uint8_t numeral_index(const char* numeral);
+NUMERAL_INDEX_TYPE numeral_index(const char* numeral);
 uint16_t numeral_value(const char** numeral);
 unsigned int numeral_to_uint(const char* numeral);
 
