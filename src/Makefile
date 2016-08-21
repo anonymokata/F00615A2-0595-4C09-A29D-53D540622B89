@@ -1,5 +1,5 @@
 lib_object = libroman_calculator.a
-objects = conversions.o
+objects = conversions.o roman_calculator.o
 
 $(lib_object) : $(objects)
 	$(AR) rv $(lib_object) $(objects)
@@ -7,6 +7,9 @@ $(lib_object) : $(objects)
 
 conversions.o : conversions.c
 	$(COMPILE) -c conversions.c
+
+roman_calculator : roman_calculator.c
+	$(COMPILE) -c roman_calculator.c
 
 .PHONY: clean
 clean :
