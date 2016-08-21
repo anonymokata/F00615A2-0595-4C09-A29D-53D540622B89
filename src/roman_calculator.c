@@ -13,3 +13,8 @@ char* add(const char* numeral1, const char* numeral2)
     }
     return result;
 }
+
+char* substract(const char* numeral1, const char* numeral2)
+{
+    return NULL;
+}
