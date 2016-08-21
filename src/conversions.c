@@ -26,19 +26,9 @@ NUMERAL_INDEX_TYPE numeral_index(const char* numeral)
 
     for(index = IV; index < NUMBER_OF_NUMERALS; index++)
     {
-        if(numeral[0] == numeral_info[index].numeral[0])
+        if(0 == strncmp(numeral, numeral_info[index].numeral, numeral_info[index].letter_size))
         {
-            if(2 == numeral_info[index].letter_size)
-            {
-                if(numeral[1] == numeral_info[index].numeral[1])
-                {
-                    return index;
-                }
-            }
-            else
-            {
-                return index;
-            }
+            return index;
         }
     }
     return INVALID_NUMERAL;
