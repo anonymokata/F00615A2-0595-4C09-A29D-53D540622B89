@@ -298,11 +298,23 @@ START_TEST(test_core_numeral_to_uint_conversions)
 }
 END_TEST
 
-START_TEST(is_five_numeral_index_function_will_return_true_for_V_L_and_D_numerals)
+START_TEST(is_five_numeral_index_function_will_return_true_for_V_L_and_D_numerals_and_false_otherwise)
 {
     ck_assert(is_five_numeral_index(V));
     ck_assert(is_five_numeral_index(L));
     ck_assert(is_five_numeral_index(D));
+
+    ck_assert(!is_five_numeral_index(INVALID_NUMERAL));
+    ck_assert(!is_five_numeral_index(IV));
+    ck_assert(!is_five_numeral_index(IX));
+    ck_assert(!is_five_numeral_index(I));
+    ck_assert(!is_five_numeral_index(XL));
+    ck_assert(!is_five_numeral_index(XC));
+    ck_assert(!is_five_numeral_index(X));
+    ck_assert(!is_five_numeral_index(CD));
+    ck_assert(!is_five_numeral_index(CM));
+    ck_assert(!is_five_numeral_index(C));
+    ck_assert(!is_five_numeral_index(M));
 }
 END_TEST
 
@@ -374,7 +386,7 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, numeral_to_uint_function_will_return_expected_unsigned_integers);
     tcase_add_test(tc_conversions, numeral_to_uint_function_will_wrap_around_the_value_of_numerals_bigger_than_65535);
     tcase_add_test(tc_conversions, test_core_numeral_to_uint_conversions);
-    tcase_add_test(tc_conversions, is_five_numeral_index_function_will_return_true_for_V_L_and_D_numerals);
+    tcase_add_test(tc_conversions, is_five_numeral_index_function_will_return_true_for_V_L_and_D_numerals_and_false_otherwise);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_a_dynamically_allocated_string);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_expected_combined_numerals);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_allocated_a_buffer_big_enough_to_handle_maximum_uint16_t_value);
