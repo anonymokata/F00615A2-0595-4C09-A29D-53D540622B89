@@ -16,5 +16,9 @@ char* add(const char* numeral1, const char* numeral2)
 
 char* substract(const char* numeral1, const char* numeral2)
 {
+    if((NULL != numeral1) && (NULL == numeral2))
+    {
+        return strdup(numeral1);
+    }
     return NULL;
 }
