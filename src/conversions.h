@@ -41,16 +41,6 @@ typedef enum
     nM = 1000
 } NUMERAL_VALUE_TYPE;
 
-typedef enum
-{
-    cIV = (('I' << 8) | 'V'),
-    cIX = (('I' << 8) | 'X'),
-    cXL = (('X' << 8) | 'L'),
-    cXC = (('X' << 8) | 'C'),
-    cCD = (('C' << 8) | 'D'),
-    cCM = (('C' << 8) | 'M')
-} CHARACTER_PAIR_TYPE;
-
 typedef struct
 {
     const NUMERAL_VALUE_TYPE value;
