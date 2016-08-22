@@ -59,6 +59,11 @@ uint16_t numeral_to_uint(const char* numeral)
     return acc;
 }
 
+bool is_five_numeral_index(NUMERAL_INDEX_TYPE index)
+{
+    return ((V == index) || (L == index) || (D == index));
+}
+
 char* uint_to_numeral(uint16_t value)
 {
     uint8_t i, index;
@@ -75,7 +80,7 @@ char* uint_to_numeral(uint16_t value)
             end += numeral_info[index].letter_size;
             *end = 0;
             value -= numeral_info[index].value;
-            if((V != index) && (L != index) && (D != index))
+            if(!is_five_numeral_index(index))
             {
                 i++;
             }
