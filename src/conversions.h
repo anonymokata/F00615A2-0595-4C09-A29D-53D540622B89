@@ -61,7 +61,6 @@ typedef struct
 NUMERAL_INDEX_TYPE numeral_index(const char* numeral);
 uint16_t numeral_value(const char** numeral);
 uint16_t numeral_to_uint(const char* numeral);
-const char* numeral(uint16_t value);
 char* uint_to_numeral(uint16_t value);
 
 extern const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS];

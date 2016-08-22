@@ -298,31 +298,6 @@ START_TEST(test_core_numeral_to_uint_conversions)
 }
 END_TEST
 
-START_TEST(numeral_function_will_return_an_empty_string_for_values_that_do_not_have_a_corresponding_numeral)
-{
-    ck_assert_str_eq(numeral(2), "");
-}
-END_TEST
-
-START_TEST(numeral_function_will_return_expected_numerals)
-{
-    ck_assert_str_eq(numeral(nINVALID_NUMERAL), "");
-    ck_assert_str_eq(numeral(nIV), "IV");
-    ck_assert_str_eq(numeral(nIX), "IX");
-    ck_assert_str_eq(numeral(nI), "I");
-    ck_assert_str_eq(numeral(nV), "V");
-    ck_assert_str_eq(numeral(nXL), "XL");
-    ck_assert_str_eq(numeral(nXC), "XC");
-    ck_assert_str_eq(numeral(nX), "X");
-    ck_assert_str_eq(numeral(nL), "L");
-    ck_assert_str_eq(numeral(nCD), "CD");
-    ck_assert_str_eq(numeral(nCM), "CM");
-    ck_assert_str_eq(numeral(nC), "C");
-    ck_assert_str_eq(numeral(nD), "D");
-    ck_assert_str_eq(numeral(nM), "M");
-}
-END_TEST
-
 START_TEST(uint_to_numeral_function_will_return_a_dynamically_allocated_string)
 {
     char* numeral = uint_to_numeral(nINVALID_NUMERAL);
@@ -391,8 +366,6 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, numeral_to_uint_function_will_return_expected_unsigned_integers);
     tcase_add_test(tc_conversions, numeral_to_uint_function_will_wrap_around_the_value_of_numerals_bigger_than_65535);
     tcase_add_test(tc_conversions, test_core_numeral_to_uint_conversions);
-    tcase_add_test(tc_conversions, numeral_function_will_return_an_empty_string_for_values_that_do_not_have_a_corresponding_numeral);
-    tcase_add_test(tc_conversions, numeral_function_will_return_expected_numerals);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_a_dynamically_allocated_string);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_expected_combined_numerals);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_allocated_a_buffer_big_enough_to_handle_maximum_uint16_t_value);

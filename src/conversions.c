@@ -59,20 +59,6 @@ uint16_t numeral_to_uint(const char* numeral)
     return acc;
 }
 
-const char* numeral(uint16_t value)
-{
-    NUMERAL_INDEX_TYPE index;
-
-    for(index = IV; index < NUMBER_OF_NUMERALS; index++)
-    {
-        if(value == numeral_info[index].value)
-        {
-            return numeral_info[index].numeral;
-        }
-    }
-    return numeral_info[INVALID_NUMERAL].numeral;
-}
-
 char* uint_to_numeral(uint16_t value)
 {
     uint8_t i, index;
