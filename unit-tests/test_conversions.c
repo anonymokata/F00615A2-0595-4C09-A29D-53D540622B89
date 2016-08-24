@@ -379,6 +379,14 @@ START_TEST(is_valid_roman_numeral_function_will_return_false_for_unknown_numeral
 }
 END_TEST
 
+START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_are_repeated_more_than_three_times)
+{
+    ck_assert_uint_eq(is_valid_roman_numeral("IIII"), 0);
+    ck_assert_uint_eq(is_valid_roman_numeral("XXXX"), 0);
+    ck_assert_uint_eq(is_valid_roman_numeral("CCCC"), 0);
+}
+END_TEST
+
 Suite* roman_calculator_suite()
 {
     Suite *s = suite_create("Roman Calculator");
@@ -402,6 +410,7 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_allocated_a_buffer_big_enough_to_handle_maximum_uint16_t_value);
     tcase_add_test(tc_conversions, test_core_uint_to_numeral_conversions);
     tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_for_unknown_numerals);
+    tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_are_repeated_more_than_three_times);
     suite_add_tcase(s, tc_conversions);
     return s;
 }
