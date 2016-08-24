@@ -88,3 +88,26 @@ char* uint_to_numeral(uint16_t value)
     }
     return numeral;
 }
+
+bool is_valid_roman_numeral(const char* numeral)
+{
+    uint16_t value;
+    const char* p = numeral;
+    bool valid = false;
+       
+    if(NULL != numeral)
+    {
+        valid = true;
+        do
+        {
+            value = numeral_value(&p);
+            if(0 == value)
+            {
+                valid = false;
+                break;
+            }
+        }
+        while(strlen(p));
+    }
+    return valid;
+}
