@@ -158,42 +158,68 @@ START_TEST(test_roman_numeral_info)
     ck_assert_int_eq(nINVALID_NUMERAL, numeral_info[INVALID_NUMERAL].value);
     ck_assert_int_eq(1, numeral_info[INVALID_NUMERAL].letter_size);
     ck_assert_str_eq("", numeral_info[INVALID_NUMERAL].numeral);
-    ck_assert_int_eq(nI, numeral_info[I].value);
+    ck_assert_int_eq(0, numeral_info[INVALID_NUMERAL].allowed_repetitions);
+
+    ck_assert_int_eq(I, numeral_info[I].value);
     ck_assert_int_eq(1, numeral_info[I].letter_size);
     ck_assert_str_eq("I", numeral_info[I].numeral);
+    ck_assert_int_eq(3, numeral_info[I].allowed_repetitions);
+
     ck_assert_int_eq(nIV, numeral_info[IV].value);
     ck_assert_int_eq(2, numeral_info[IV].letter_size);
     ck_assert_str_eq("IV", numeral_info[IV].numeral);
+    ck_assert_int_eq(1, numeral_info[IV].allowed_repetitions);
+
     ck_assert_int_eq(nV, numeral_info[V].value);
     ck_assert_int_eq(1, numeral_info[V].letter_size);
     ck_assert_str_eq("V", numeral_info[V].numeral);
+    ck_assert_int_eq(1, numeral_info[V].allowed_repetitions);
+
     ck_assert_int_eq(nIX, numeral_info[IX].value);
     ck_assert_int_eq(2, numeral_info[IX].letter_size);
     ck_assert_str_eq("IX", numeral_info[IX].numeral);
+    ck_assert_int_eq(1, numeral_info[IX].allowed_repetitions);
+    
     ck_assert_int_eq(nX, numeral_info[X].value);
     ck_assert_int_eq(1, numeral_info[X].letter_size);
     ck_assert_str_eq("X", numeral_info[X].numeral);
+    ck_assert_int_eq(3, numeral_info[X].allowed_repetitions);
+    
     ck_assert_int_eq(nXL, numeral_info[XL].value);
     ck_assert_int_eq(2, numeral_info[XL].letter_size);
     ck_assert_str_eq("XL", numeral_info[XL].numeral);
+    ck_assert_int_eq(1, numeral_info[XL].allowed_repetitions);
+    
     ck_assert_int_eq(nL, numeral_info[L].value);
     ck_assert_int_eq(1, numeral_info[L].letter_size);
     ck_assert_str_eq("L", numeral_info[L].numeral);
+    ck_assert_int_eq(1, numeral_info[L].allowed_repetitions);
+    
     ck_assert_int_eq(nXC, numeral_info[XC].value);
     ck_assert_int_eq(2, numeral_info[XC].letter_size);
     ck_assert_str_eq("XC", numeral_info[XC].numeral);
+    ck_assert_int_eq(1, numeral_info[XC].allowed_repetitions);
+    
     ck_assert_int_eq(nC, numeral_info[C].value);
     ck_assert_int_eq(1, numeral_info[C].letter_size);
     ck_assert_str_eq("C", numeral_info[C].numeral);
+    ck_assert_int_eq(3, numeral_info[C].allowed_repetitions);
+    
     ck_assert_int_eq(nCD, numeral_info[CD].value);
     ck_assert_int_eq(2, numeral_info[CD].letter_size);
     ck_assert_str_eq("CD", numeral_info[CD].numeral);
+    ck_assert_int_eq(1, numeral_info[CD].allowed_repetitions);
+    
     ck_assert_int_eq(nD, numeral_info[D].value);
     ck_assert_int_eq(1, numeral_info[D].letter_size);
     ck_assert_str_eq("D", numeral_info[D].numeral);
+    ck_assert_int_eq(1, numeral_info[D].allowed_repetitions);
+    
     ck_assert_int_eq(nCM, numeral_info[CM].value);
     ck_assert_int_eq(2, numeral_info[CM].letter_size);
     ck_assert_str_eq("CM", numeral_info[CM].numeral);
+    ck_assert_int_eq(1, numeral_info[CM].allowed_repetitions);
+    
     ck_assert_int_eq(nM, numeral_info[M].value);
     ck_assert_int_eq(1, numeral_info[M].letter_size);
     ck_assert_str_eq("M", numeral_info[M].numeral);
