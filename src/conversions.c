@@ -110,18 +110,18 @@ bool is_valid_numeral_substraction(const NUMERAL_INDEX_TYPE index, const NUMERAL
 {
     if(INVALID_NUMERAL != next_index)
     {
-        if(is_five_numeral_index(index))
+        if(numeral_info[index].value < numeral_info[next_index].value)
         {
-            if(numeral_info[index].value < numeral_info[next_index].value)
+            if(is_five_numeral_index(index))
             {
                 return false;
             }
-        }
-        else
-        {
-            if((numeral_info[index].value < numeral_info[next_index].value) && (1 == numeral_info[index].letter_size))
+            else
             {
-                return false;
+                if(1 == numeral_info[index].letter_size)
+                {
+                    return false;
+                }
             }
         }
     }
