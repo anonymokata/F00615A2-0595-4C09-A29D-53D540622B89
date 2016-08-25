@@ -26,6 +26,18 @@ START_TEST(add_function_will_return_the_addition_of_two_roman_numerals)
     result = add("II", "II");
     ck_assert_str_eq(result, "IV");
     free(result);
+
+    result = add("IX", "I");
+    ck_assert_str_eq(result, "X");
+    free(result);
+
+    result = add("V", "V");
+    ck_assert_str_eq(result, "X");
+    free(result);
+
+    result = add("MMMCMXCIX", "I");
+    ck_assert_str_eq(result, "MMMM");
+    free(result);
 }
 END_TEST
 
@@ -53,6 +65,14 @@ START_TEST(substract_function_will_return_the_substraction_of_the_second_paramet
     char* result = substract("II", "I");
 
     ck_assert_str_eq(result, "I");
+    free(result);
+
+    result = substract("V", "I");
+    ck_assert_str_eq(result, "IV");
+    free(result);
+
+    result = substract("MMMM", "I");
+    ck_assert_str_eq(result, "MMMCMXCIX");
     free(result);
 }
 END_TEST
