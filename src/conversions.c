@@ -49,7 +49,7 @@ uint16_t numeral_to_uint(const char* numeral)
     const char* p = numeral;
     uint16_t acc = 0;
 
-    while(strlen(p))
+    while(0 != strlen(p))
     {
         acc += numeral_value(&p);
     }
@@ -67,15 +67,15 @@ char* uint_to_numeral(uint16_t value)
     char* numeral = malloc(80);
     char* end = numeral;
 
-    numeral[0] = 0;
-    for(i = NUMBER_OF_NUMERALS - 1; (0 < value) && (0 < i); i--)
+    numeral[0] = '\0';
+    for(i = (uint8_t)NUMBER_OF_NUMERALS - 1; (0 != value) && (0 != i); i--)
     {
         index = numeral_info_ordered_index[i];
         if(0 != (value / numeral_info[index].value))
         {
             strcpy(end, numeral_info[index].numeral);
             end += numeral_info[index].letter_size;
-            *end = 0;
+            *end = '\0';
             value -= numeral_info[index].value;
             if(!is_five_numeral_index(index))
             {
