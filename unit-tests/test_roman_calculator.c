@@ -41,6 +41,15 @@ START_TEST(add_function_will_return_the_addition_of_two_roman_numerals)
 }
 END_TEST
 
+START_TEST(add_function_will_return_wrapped_around_values_when_result_is_greater_than_65535)
+{
+    char* result = add("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM", "DXXXVII");
+
+    ck_assert_str_eq(result, "I");
+    free(result);
+}
+END_TEST
+
 START_TEST(substract_function_will_return_NULL_when_a_function_parameter_is_not_a_valid_roman_numeral)
 {
     ck_assert_ptr_eq(NULL, substract(NULL, NULL));
@@ -82,6 +91,7 @@ void add_roman_calculator_test_case(Suite *s)
     TCase *tc_roman_calculator = tcase_create("Roman Calculator");
     tcase_add_test(tc_roman_calculator, add_function_will_return_NULL_when_a_function_parameter_is_not_a_valid_roman_numeral);
     tcase_add_test(tc_roman_calculator, add_function_will_return_the_addition_of_two_roman_numerals);
+    tcase_add_test(tc_roman_calculator, add_function_will_return_wrapped_around_values_when_result_is_greater_than_65535);
     tcase_add_test(tc_roman_calculator, substract_function_will_return_NULL_when_a_function_parameter_is_not_a_valid_roman_numeral);
     tcase_add_test(tc_roman_calculator, substract_function_will_return_NULL_if_the_first_parameter_is_not_greater_or_equal_than_second_one);
     tcase_add_test(tc_roman_calculator, substract_function_will_return_the_substraction_of_the_second_parameter_from_the_first_one);
