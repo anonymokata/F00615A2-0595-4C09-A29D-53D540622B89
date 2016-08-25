@@ -103,7 +103,7 @@ bool is_valid_roman_numeral(const char* numeral)
     {
         return false;
     }
-    for(letter = repetitions = 0; letter < letters; letter += numeral_info[letter].letter_size)
+    for(letter = 0, repetitions = 1; letter < letters; letter += numeral_info[index].letter_size)
     {
         index = numeral_index(&numeral[letter]);
         if(INVALID_NUMERAL == index)
@@ -113,14 +113,14 @@ bool is_valid_roman_numeral(const char* numeral)
         if(numeral[letter] == numeral[letter + 1])
         {
             repetitions++;
-            if(repetitions > numeral_info[letter].allowed_repetitions)
+            if(repetitions > numeral_info[index].allowed_repetitions)
             {
                 return false;
             }
         }
         else
         {
-            repetitions = 0;
+            repetitions = 1;
         }
     }
     return true;
