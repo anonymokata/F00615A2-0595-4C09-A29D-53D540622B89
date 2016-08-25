@@ -18,7 +18,7 @@ char* substract(const char* numeral1, const char* numeral2)
     {
         uint16_t value1 = numeral_to_uint(numeral1);
         uint16_t value2 = numeral_to_uint(numeral2);
-        if(value1 >= value2)
+        if(value1 > value2)
         {
             return uint_to_numeral(value1 - value2);
         }
