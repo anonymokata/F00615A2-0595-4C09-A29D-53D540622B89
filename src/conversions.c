@@ -4,20 +4,20 @@
 
 const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS] =
 {
-    { nINVALID_NUMERAL, 1,  0,      ""      },
-    { nIV,              2,  1,      "IV"    },
-    { nIX,              2,  1,      "IX"    },
-    { nI,               1,  3,      "I"     },
-    { nV,               1,  1,      "V"     },
-    { nXL,              2,  1,      "XL"    },
-    { nXC,              2,  1,      "XC"    },
-    { nX,               1,  3,      "X"     },
-    { nL,               1,  1,      "L"     },
-    { nCD,              2,  1,      "CD"    },
-    { nCM,              2,  1,      "CM"    },
-    { nC,               1,  3,      "C"     },
-    { nD,               1,  1,      "D"     },
-    { nM,               1,  255,    "M"     }
+    { nINVALID_NUMERAL, 1,  0,  ""      },
+    { nIV,              2,  1,  "IV"    },
+    { nIX,              2,  1,  "IX"    },
+    { nI,               1,  3,  "I"     },
+    { nV,               1,  1,  "V"     },
+    { nXL,              2,  1,  "XL"    },
+    { nXC,              2,  1,  "XC"    },
+    { nX,               1,  3,  "X"     },
+    { nL,               1,  1,  "L"     },
+    { nCD,              2,  1,  "CD"    },
+    { nCM,              2,  1,  "CM"    },
+    { nC,               1,  3,  "C"     },
+    { nD,               1,  1,  "D"     },
+    { nM,               1,  65, "M"     }
 };
 
 const uint8_t numeral_info_ordered_index[NUMBER_OF_NUMERALS] = {0, 3, 1, 4, 2, 7, 5, 8, 6, 11, 9, 12, 10, 13};
@@ -38,7 +38,7 @@ NUMERAL_INDEX_TYPE numeral_index(const char* numeral)
 
 uint16_t numeral_value(const char** numeral)
 {
-    uint8_t index = numeral_index(*numeral);
+    NUMERAL_INDEX_TYPE index = numeral_index(*numeral);
 
     *numeral += numeral_info[index].letter_size;
     return numeral_info[index].value;
@@ -91,23 +91,37 @@ char* uint_to_numeral(uint16_t value)
 
 bool is_valid_roman_numeral(const char* numeral)
 {
-    uint16_t value;
-    const char* p = numeral;
-    bool valid = false;
+    NUMERAL_INDEX_TYPE index;
+    unsigned int letter, repetitions;
        
-    if(NULL != numeral)
+    if(NULL == numeral)
     {
-        valid = true;
-        do
+        return false;
+    }
+    unsigned int letters = strlen(numeral);
+    if(0 == letters)
+    {
+        return false;
+    }
+    for(letter = repetitions = 0; letter < letters; letter += numeral_info[letter].letter_size)
+    {
+        index = numeral_index(&numeral[letter]);
+        if(INVALID_NUMERAL == index)
         {
-            value = numeral_value(&p);
-            if(0 == value)
+            return false;
+        }
+        if(numeral[letter] == numeral[letter + 1])
+        {
+            repetitions++;
+            if(repetitions > numeral_info[letter].allowed_repetitions)
             {
-                valid = false;
-                break;
+                return false;
             }
         }
-        while(strlen(p));
+        else
+        {
+            repetitions = 0;
+        }
     }
-    return valid;
+    return true;
 }

@@ -222,7 +222,7 @@ START_TEST(test_roman_numeral_info)
     
     ck_assert_int_eq(nM, numeral_info[M].value);
     ck_assert_int_eq(1, numeral_info[M].letter_size);
-    ck_assert_int_eq(255, numeral_info[M].allowed_repetitions);
+    ck_assert_int_eq(65, numeral_info[M].allowed_repetitions);
     ck_assert_str_eq("M", numeral_info[M].numeral);
 }
 END_TEST
