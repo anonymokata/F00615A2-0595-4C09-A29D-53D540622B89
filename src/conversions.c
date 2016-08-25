@@ -89,6 +89,23 @@ char* uint_to_numeral(uint16_t value)
     return numeral;
 }
 
+bool is_valid_repetition(const NUMERAL_INDEX_TYPE index, const char letter, const char next_letter, unsigned int* repetitions)
+{
+    if(letter == next_letter)
+    {
+        (*repetitions)++;
+        if((*repetitions) > numeral_info[index].allowed_repetitions)
+        {
+            return false;
+        }
+    }
+    else
+    {
+        (*repetitions) = 1;
+    }
+    return true;
+}
+
 bool is_valid_numeral_substraction(const NUMERAL_INDEX_TYPE index, const NUMERAL_INDEX_TYPE next_index)
 {
     if(INVALID_NUMERAL != next_index)
@@ -128,23 +145,9 @@ bool is_valid_roman_numeral(const char* numeral)
     for(letter = 0, repetitions = 1; letter < letters; letter += numeral_info[index].letter_size)
     {
         index = numeral_index(&numeral[letter]);
-        if(INVALID_NUMERAL == index)
-        {
-            return false;
-        }
-        if(numeral[letter] == numeral[letter + 1])
-        {
-            repetitions++;
-            if(repetitions > numeral_info[index].allowed_repetitions)
-            {
-                return false;
-            }
-        }
-        else
-        {
-            repetitions = 1;
-        }
-        if(!is_valid_numeral_substraction(index, numeral_index(&numeral[letter + 1])))
+        if( (INVALID_NUMERAL == index) ||
+            (!is_valid_repetition(index, numeral[letter], numeral[letter + 1], &repetitions)) ||
+            (!is_valid_numeral_substraction(index, numeral_index(&numeral[letter + 1]))))
         {
             return false;
         }
