@@ -59,7 +59,7 @@ uint16_t numeral_to_uint(const char* numeral)
     return acc;
 }
 
-bool is_five_numeral_index(NUMERAL_INDEX_TYPE index)
+bool is_five_numeral_index(const NUMERAL_INDEX_TYPE index)
 {
     return ((V == index) || (L == index) || (D == index));
 }
@@ -89,9 +89,31 @@ char* uint_to_numeral(uint16_t value)
     return numeral;
 }
 
+bool is_valid_numeral_substraction(const NUMERAL_INDEX_TYPE index, const NUMERAL_INDEX_TYPE next_index)
+{
+    if(INVALID_NUMERAL != next_index)
+    {
+        if(is_five_numeral_index(index))
+        {
+            if(numeral_info[index].value < numeral_info[next_index].value)
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if((numeral_info[index].value < numeral_info[next_index].value) && (1 == numeral_info[index].letter_size))
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 bool is_valid_roman_numeral(const char* numeral)
 {
-    NUMERAL_INDEX_TYPE index, next_index;
+    NUMERAL_INDEX_TYPE index;
     unsigned int letter, repetitions;
 
     if(NULL == numeral)
@@ -122,23 +144,9 @@ bool is_valid_roman_numeral(const char* numeral)
         {
             repetitions = 1;
         }
-        next_index = numeral_index(&numeral[letter + 1]);
-        if(INVALID_NUMERAL != next_index)
+        if(!is_valid_numeral_substraction(index, numeral_index(&numeral[letter + 1])))
         {
-            if(is_five_numeral_index(index))
-            {
-                if(numeral_info[index].value < numeral_info[next_index].value)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if((numeral_info[index].value < numeral_info[next_index].value) && (1 == numeral_info[index].letter_size))
-                {
-                    return false;
-                }
-            }
+            return false;
         }
     }
     return true;
