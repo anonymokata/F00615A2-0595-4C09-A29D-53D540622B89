@@ -14,12 +14,8 @@ char* add(const char* numeral1, const char* numeral2)
 
 char* substract(const char* numeral1, const char* numeral2)
 {
-    if(NULL != numeral1)
+    if((is_valid_roman_numeral(numeral1)) && (is_valid_roman_numeral(numeral2)))
     {
-        if(NULL == numeral2)
-        {
-            return strdup(numeral1);
-        }
         uint16_t value1 = numeral_to_uint(numeral1);
         uint16_t value2 = numeral_to_uint(numeral2);
         if(value1 >= value2)
