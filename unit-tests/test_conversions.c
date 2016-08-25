@@ -447,6 +447,24 @@ START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_
 }
 END_TEST
 
+START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_substraction_is_forbidden)
+{
+    ck_assert_uint_eq(is_valid_roman_numeral("IL"), 0);
+    ck_assert_uint_eq(is_valid_roman_numeral("IC"), 0);
+    ck_assert_uint_eq(is_valid_roman_numeral("ID"), 0);
+    ck_assert_uint_eq(is_valid_roman_numeral("IM"), 0);
+    ck_assert_uint_eq(is_valid_roman_numeral("XD"), 0);
+    ck_assert_uint_eq(is_valid_roman_numeral("XM"), 0);
+
+    ck_assert_uint_eq(is_valid_roman_numeral("IV"), 1);
+    ck_assert_uint_eq(is_valid_roman_numeral("IX"), 1);
+    ck_assert_uint_eq(is_valid_roman_numeral("XL"), 1);
+    ck_assert_uint_eq(is_valid_roman_numeral("XC"), 1);
+    ck_assert_uint_eq(is_valid_roman_numeral("CD"), 1);
+    ck_assert_uint_eq(is_valid_roman_numeral("CM"), 1);
+}
+END_TEST
+
 Suite* roman_calculator_suite()
 {
     Suite *s = suite_create("Roman Calculator");
@@ -475,6 +493,7 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numeral_M_is_repeated_more_than_65_times);
     tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_true_if_numerals_I_X_or_C_are_repeated_less_than_4_times);
     tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_D_are_used_for_substraction);
+    tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_substraction_is_forbidden);
     suite_add_tcase(s, tc_conversions);
     return s;
 }
