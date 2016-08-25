@@ -4,20 +4,20 @@
 
 const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS] =
 {
-    { nINVALID_NUMERAL, 1, ""   },
-    { nIV,              2, "IV" },
-    { nIX,              2, "IX" },
-    { nI,               1, "I"  },
-    { nV,               1, "V"  },
-    { nXL,              2, "XL" },
-    { nXC,              2, "XC" },
-    { nX,               1, "X"  },
-    { nL,               1, "L"  },
-    { nCD,              2, "CD" },
-    { nCM,              2, "CM" },
-    { nC,               1, "C"  },
-    { nD,               1, "D"  },
-    { nM,               1, "M"  }
+    { nINVALID_NUMERAL, 1,  0,      ""      },
+    { nIV,              2,  1,      "IV"    },
+    { nIX,              2,  1,      "IX"    },
+    { nI,               1,  3,      "I"     },
+    { nV,               1,  1,      "V"     },
+    { nXL,              2,  1,      "XL"    },
+    { nXC,              2,  1,      "XC"    },
+    { nX,               1,  3,      "X"     },
+    { nL,               1,  1,      "L"     },
+    { nCD,              2,  1,      "CD"    },
+    { nCM,              2,  1,      "CM"    },
+    { nC,               1,  3,      "C"     },
+    { nD,               1,  1,      "D"     },
+    { nM,               1,  255,    "M"     }
 };
 
 const uint8_t numeral_info_ordered_index[NUMBER_OF_NUMERALS] = {0, 3, 1, 4, 2, 7, 5, 8, 6, 11, 9, 12, 10, 13};

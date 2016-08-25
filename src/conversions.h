@@ -45,8 +45,9 @@ typedef enum
 typedef struct
 {
     const NUMERAL_VALUE_TYPE value;
-    const unsigned char letter_size;
-    const char numeral[];
+    const uint8_t letter_size;
+    const uint8_t allowed_repetitions;
+    const char* numeral;
 } NUMERAL_INFO_TYPE;
 
 NUMERAL_INDEX_TYPE numeral_index(const char* numeral);
