@@ -8,6 +8,8 @@ START_TEST(add_function_will_return_NULL_when_a_function_parameter_is_not_a_vali
     ck_assert_ptr_eq(NULL, add(NULL, NULL));
     ck_assert_ptr_eq(NULL, add("I", NULL));
     ck_assert_ptr_eq(NULL, add(NULL, "I"));
+    ck_assert_ptr_eq(NULL, add("", ""));
+    ck_assert_ptr_eq(NULL, add("I", ""));
     ck_assert_ptr_eq(NULL, add("b", "I"));
     ck_assert_ptr_eq(NULL, add("VX", "I"));
     ck_assert_ptr_eq(NULL, add("V", "CCCC"));
@@ -64,6 +66,8 @@ START_TEST(substract_function_will_return_NULL_when_a_function_parameter_is_not_
     ck_assert_ptr_eq(NULL, substract(NULL, NULL));
     ck_assert_ptr_eq(NULL, substract("I", NULL));
     ck_assert_ptr_eq(NULL, substract(NULL, "I"));
+    ck_assert_ptr_eq(NULL, substract("", ""));
+    ck_assert_ptr_eq(NULL, substract("I", ""));
     ck_assert_ptr_eq(NULL, substract("b", "I"));
     ck_assert_ptr_eq(NULL, substract("VX", "I"));
     ck_assert_ptr_eq(NULL, substract("CCCC", "V"));
