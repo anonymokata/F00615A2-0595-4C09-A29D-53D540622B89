@@ -122,10 +122,19 @@ bool is_valid_roman_numeral(const char* numeral)
         {
             repetitions = 1;
         }
+        next_index = numeral_index(&numeral[letter + 1]);
         if(is_five_numeral_index(index))
         {
-            next_index = numeral_index(&numeral[letter + 1]);
             if((INVALID_NUMERAL != next_index) && (numeral_info[index].value < numeral_info[next_index].value))
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if( (INVALID_NUMERAL != next_index) &&
+                (numeral_info[index].value < numeral_info[next_index].value) &&
+                (1 == numeral_info[index].letter_size))
             {
                 return false;
             }
