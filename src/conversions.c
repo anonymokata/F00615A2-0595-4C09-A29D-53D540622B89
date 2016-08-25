@@ -49,12 +49,9 @@ uint16_t numeral_to_uint(const char* numeral)
     const char* p = numeral;
     uint16_t acc = 0;
 
-    if(NULL != numeral)
+    while(strlen(p))
     {
-        while(strlen(p))
-        {
-            acc += numeral_value(&p);
-        }
+        acc += numeral_value(&p);
     }
     return acc;
 }

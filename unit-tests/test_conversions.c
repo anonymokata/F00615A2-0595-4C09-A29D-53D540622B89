@@ -291,9 +291,9 @@ END_TEST
 
 START_TEST(numeral_to_uint_function_will_return_zero_when_no_condition_is_met)
 {
-    ck_assert_int_eq(numeral_to_uint(NULL), 0);
-    ck_assert_int_eq(numeral_to_uint(""), 0);
     ck_assert_int_eq(numeral_to_uint("Z"), 0);
+    ck_assert_int_eq(numeral_to_uint("a"), 0);
+    ck_assert_int_eq(numeral_to_uint("1"), 0);
 }
 END_TEST
 
