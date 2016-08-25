@@ -86,7 +86,7 @@ char* uint_to_numeral(uint16_t value)
     return numeral;
 }
 
-bool is_valid_repetition(const NUMERAL_INDEX_TYPE index, const char letter, const char next_letter, unsigned int* repetitions)
+bool is_valid_repetition(const NUMERAL_INDEX_TYPE index, const char letter, const char next_letter, uint8_t* repetitions)
 {
     if(letter == next_letter)
     {
@@ -128,13 +128,13 @@ bool is_valid_numeral_substraction(const NUMERAL_INDEX_TYPE index, const NUMERAL
 bool is_valid_roman_numeral(const char* numeral)
 {
     NUMERAL_INDEX_TYPE index;
-    unsigned int letter, repetitions;
+    uint8_t letter, repetitions;
 
     if(NULL == numeral)
     {
         return false;
     }
-    unsigned int letters = strlen(numeral);
+    uint8_t letters = strlen(numeral);
     if(0 == letters)
     {
         return false;
