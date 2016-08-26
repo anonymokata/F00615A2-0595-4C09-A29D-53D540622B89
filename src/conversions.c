@@ -75,7 +75,6 @@ char* uint_to_numeral(uint16_t value)
         {
             strcpy(end, numeral_info[index].numeral);
             end += numeral_info[index].letter_size;
-            *end = '\0';
             value -= numeral_info[index].value;
             if(!is_five_numeral_index(index))
             {
