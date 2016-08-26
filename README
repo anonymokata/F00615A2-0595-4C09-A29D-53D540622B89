@@ -1,6 +1,6 @@
 This is the roman calculator coding exercise. It will leave a trail o frequent commits to help with review efforts.
 
-This implementation follows the next rules only:
+This implementation follows the next rules:
 
     - Roman numerals consist of the following letters: I, V, X, L, C, D, and M which mean one, five, ten, fifty, hundred, five hundred and one thousand respectively.
     - As we are in Rome there are no such things as decimals or integers, we need to do this with the strings. An example would be "XIV" + "LX" = "LXXIV".
@@ -26,3 +26,8 @@ Building the library at a terminal:
     - $make (to build the library).
     - $make check (to build the library and run unit tests).
     - $make clean (to remove files generated during build).
+
+The API consists of public functions add() and substract() declared in the roman_calculator.h header file. This file should be included, and the application linked together with the libroman_calculator.a static library when bounding to the interface. Both functions will return a NULL pointer if the caller provides a NULL parameter, an invalid roman numeral, a numeral not following the classic style, or when the result of the computation is zero. The substract() function will return NULL when attempting to substract from a smaller number. Additions with results requiring more than 16 bits will return wrapped around values as shown in the following examples:
+
+    - 65535 + 1 = NULL
+    - 65535 + 2 = 1
