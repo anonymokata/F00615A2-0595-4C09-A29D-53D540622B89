@@ -397,27 +397,27 @@ END_TEST
 
 START_TEST(is_valid_roman_numeral_function_will_return_false_for_unknown_numerals)
 {
-    ck_assert_uint_eq(is_valid_roman_numeral(NULL), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral(""), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("K"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("VZ"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("i"), 0);
+    ck_assert(!is_valid_roman_numeral(NULL));
+    ck_assert(!is_valid_roman_numeral(""));
+    ck_assert(!is_valid_roman_numeral("K"));
+    ck_assert(!is_valid_roman_numeral("VZ"));
+    ck_assert(!is_valid_roman_numeral("i"));
 }
 END_TEST
 
 START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_are_repeated_more_than_three_times)
 {
-    ck_assert_uint_eq(is_valid_roman_numeral("IIII"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("XXXX"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("CCCC"), 0);
+    ck_assert(!is_valid_roman_numeral("IIII"));
+    ck_assert(!is_valid_roman_numeral("XXXX"));
+    ck_assert(!is_valid_roman_numeral("CCCC"));
 }
 END_TEST
 
 START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_D_are_repeated)
 {
-    ck_assert_uint_eq(is_valid_roman_numeral("VV"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("LL"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("DD"), 0);
+    ck_assert(!is_valid_roman_numeral("VV"));
+    ck_assert(!is_valid_roman_numeral("LL"));
+    ck_assert(!is_valid_roman_numeral("DD"));
 }
 END_TEST
 
@@ -429,39 +429,39 @@ END_TEST
 
 START_TEST(is_valid_roman_numeral_function_will_return_true_if_numerals_I_X_or_C_are_repeated_less_than_4_times)
 {
-    ck_assert_uint_eq(is_valid_roman_numeral("II"), 1);
-    ck_assert_uint_eq(is_valid_roman_numeral("III"), 1);
-    ck_assert_uint_eq(is_valid_roman_numeral("XXX"), 1);
-    ck_assert_uint_eq(is_valid_roman_numeral("CCC"), 1);
+    ck_assert(is_valid_roman_numeral("II"));
+    ck_assert(is_valid_roman_numeral("III"));
+    ck_assert(is_valid_roman_numeral("XXX"));
+    ck_assert(is_valid_roman_numeral("CCC"));
 }
 END_TEST
 
 START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_D_are_used_for_substraction)
 {
-    ck_assert_uint_eq(is_valid_roman_numeral("VX"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("LC"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("DM"), 0);
+    ck_assert(!is_valid_roman_numeral("VX"));
+    ck_assert(!is_valid_roman_numeral("LC"));
+    ck_assert(!is_valid_roman_numeral("DM"));
 
-    ck_assert_uint_eq(is_valid_roman_numeral("V"), 1);
-    ck_assert_uint_eq(is_valid_roman_numeral("VII"), 1);
+    ck_assert(is_valid_roman_numeral("V"));
+    ck_assert(is_valid_roman_numeral("VII"));
 }
 END_TEST
 
 START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_substraction_is_forbidden)
 {
-    ck_assert_uint_eq(is_valid_roman_numeral("IL"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("IC"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("ID"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("IM"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("XD"), 0);
-    ck_assert_uint_eq(is_valid_roman_numeral("XM"), 0);
+    ck_assert(!is_valid_roman_numeral("IL"));
+    ck_assert(!is_valid_roman_numeral("IC"));
+    ck_assert(!is_valid_roman_numeral("ID"));
+    ck_assert(!is_valid_roman_numeral("IM"));
+    ck_assert(!is_valid_roman_numeral("XD"));
+    ck_assert(!is_valid_roman_numeral("XM"));
 
-    ck_assert_uint_eq(is_valid_roman_numeral("IV"), 1);
-    ck_assert_uint_eq(is_valid_roman_numeral("IX"), 1);
-    ck_assert_uint_eq(is_valid_roman_numeral("XL"), 1);
-    ck_assert_uint_eq(is_valid_roman_numeral("XC"), 1);
-    ck_assert_uint_eq(is_valid_roman_numeral("CD"), 1);
-    ck_assert_uint_eq(is_valid_roman_numeral("CM"), 1);
+    ck_assert(is_valid_roman_numeral("IV"));
+    ck_assert(is_valid_roman_numeral("IX"));
+    ck_assert(is_valid_roman_numeral("XL"));
+    ck_assert(is_valid_roman_numeral("XC"));
+    ck_assert(is_valid_roman_numeral("CD"));
+    ck_assert(is_valid_roman_numeral("CM"));
 }
 END_TEST
 
