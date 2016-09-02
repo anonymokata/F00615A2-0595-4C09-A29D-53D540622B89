@@ -102,7 +102,7 @@ bool is_valid_repetition(const NUMERAL_INDEX_TYPE index, const char letter, cons
     return true;
 }
 
-bool is_valid_numeral_substraction(const NUMERAL_INDEX_TYPE index, const NUMERAL_INDEX_TYPE next_index)
+bool is_valid_numeral_subtraction(const NUMERAL_INDEX_TYPE index, const NUMERAL_INDEX_TYPE next_index)
 {
     if(INVALID_NUMERAL != next_index)
     {
@@ -143,7 +143,7 @@ bool is_valid_roman_numeral(const char* numeral)
         index = numeral_index(&numeral[letter]);
         if( (INVALID_NUMERAL == index) ||
             (!is_valid_repetition(index, numeral[letter], numeral[letter + 1], &repetitions)) ||
-            (!is_valid_numeral_substraction(index, numeral_index(&numeral[letter + 1]))))
+            (!is_valid_numeral_subtraction(index, numeral_index(&numeral[letter + 1]))))
         {
             return false;
         }

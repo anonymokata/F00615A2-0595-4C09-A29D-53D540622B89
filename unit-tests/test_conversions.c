@@ -436,7 +436,7 @@ START_TEST(is_valid_roman_numeral_function_will_return_true_if_numerals_I_X_or_C
 }
 END_TEST
 
-START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_D_are_used_for_substraction)
+START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_D_are_used_for_subtraction)
 {
     ck_assert(!is_valid_roman_numeral("VX"));
     ck_assert(!is_valid_roman_numeral("LC"));
@@ -447,7 +447,7 @@ START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_
 }
 END_TEST
 
-START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_substraction_is_forbidden)
+START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_subtraction_is_forbidden)
 {
     ck_assert(!is_valid_roman_numeral("IL"));
     ck_assert(!is_valid_roman_numeral("IC"));
@@ -465,7 +465,7 @@ START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_
 }
 END_TEST
 
-START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_are_used_more_than_once_for_substraction)
+START_TEST(is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_are_used_more_than_once_for_subtraction)
 {
     ck_assert(!is_valid_roman_numeral("IIV"));
     ck_assert(!is_valid_roman_numeral("IIIX"));
@@ -503,9 +503,9 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_D_are_repeated);
     tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numeral_M_is_repeated_more_than_65_times);
     tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_true_if_numerals_I_X_or_C_are_repeated_less_than_4_times);
-    tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_D_are_used_for_substraction);
-    tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_substraction_is_forbidden);
-    tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_are_used_more_than_once_for_substraction);
+    tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_V_L_or_D_are_used_for_subtraction);
+    tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_subtraction_is_forbidden);
+    tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_are_used_more_than_once_for_subtraction);
     suite_add_tcase(s, tc_conversions);
     return s;
 }

@@ -12,7 +12,7 @@ char* add(const char* numeral1, const char* numeral2)
     return NULL;
 }
 
-char* substract(const char* numeral1, const char* numeral2)
+char* subtract(const char* numeral1, const char* numeral2)
 {
     if(is_valid_roman_numeral(numeral1) && is_valid_roman_numeral(numeral2))
     {

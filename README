@@ -11,7 +11,7 @@ This implementation follows the next rules:
 
 The calculator will convert character strings of roman numerals to integers internally, execute the requested computation, and convert the integer result back to a roman numeral character string.
 The solution will have a maximum numberic limit of 65535, so the API will allocate a buffer that is big enough to represent the result, and the caller will be responsible for freeing the returned string.
-Tools like Excel and Libre Office Calc offer support for 5 different roman numerals simplifications. This calculator will only support the classic style, which allows only substracting symbols 'I', 'X', and 'C' from its two next highest values ('IV' and 'IX', 'XL' and 'XC', 'CD' and 'CM'), and forbids substracting with 'V', 'L', and 'D'.
+Tools like Excel and Libre Office Calc offer support for 5 different roman numerals simplifications. This calculator will only support the classic style, which allows only subtracting symbols 'I', 'X', and 'C' from its two next highest values ('IV' and 'IX', 'XL' and 'XC', 'CD' and 'CM'), and forbids subtracting with 'V', 'L', and 'D'.
 
 The following programs are expected to be installed in the system in order to compile and test:
 
@@ -27,7 +27,7 @@ Building the library at a terminal:
     - $make check (to build the library and run unit tests).
     - $make clean (to remove files generated during build).
 
-The API consists of public functions add() and substract() declared in the roman_calculator.h header file. This file should be included, and the application linked together with the libroman_calculator.a static library when bounding to the interface. Both functions will return a NULL pointer if the caller provides a NULL parameter, an invalid roman numeral, a numeral not following the classic style, or when the result of the computation is zero. The substract() function will return NULL when attempting to substract from a smaller number. Additions with results requiring more than 16 bits will return wrapped around values as shown in the following examples:
+The API consists of public functions add() and subtract() declared in the roman_calculator.h header file. This file should be included, and the application linked together with the libroman_calculator.a static library when bounding to the interface. Both functions will return a NULL pointer if the caller provides a NULL parameter, an invalid roman numeral, a numeral not following the classic style, or when the result of the computation is zero. The subtract() function will return NULL when attempting to subtract from a smaller number. Additions with results requiring more than 16 bits will return wrapped around values as shown in the following examples:
 
     - 65535 + 1 = NULL
     - 65535 + 2 = 1
