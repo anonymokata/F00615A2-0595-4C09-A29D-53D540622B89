@@ -1,4 +1,5 @@
 #include "roman_calculator.h"
+#include "validations.h"
 #include "conversions.h"
 
 #include <stdlib.h>

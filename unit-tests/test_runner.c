@@ -1,4 +1,5 @@
 #include "test_conversions.h"
+#include "test_validations.h"
 #include "test_roman_calculator.h"
 
 #include <stdlib.h>
@@ -26,6 +27,7 @@ int main(void)
     int number_failed;
     Suite *s = roman_calculator_suite();
     add_conversions_test_case(s);
+    add_validations_test_case(s);
     add_roman_calculator_test_case(s);
     SRunner *sr = srunner_create(s);
     srunner_run_all(sr, CK_VERBOSE);
