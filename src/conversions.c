@@ -62,14 +62,13 @@ bool is_five_numeral_index(const NUMERAL_INDEX_TYPE index)
     return ((V == index) || (L == index) || (D == index));
 }
 
-char* uint_to_numeral(uint16_t value)
+char* uint_to_numeral(uint16_t value, char result[16])
 {
     uint8_t i, index;
-    char* numeral = malloc(16);
-    char* end = numeral;
+    char* end = result;
 
     value %= 4000;
-    numeral[0] = '\0';
+    result[0] = '\0';
     for(i = (uint8_t)NUMBER_OF_NUMERALS - 1; (0 != value) && (0 != i); i--)
     {
         index = numeral_info_ordered_index[i];
@@ -84,5 +83,5 @@ char* uint_to_numeral(uint16_t value)
             }
         }
     }
-    return numeral;
+    return result;
 }

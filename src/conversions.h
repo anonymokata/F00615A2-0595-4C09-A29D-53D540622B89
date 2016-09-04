@@ -53,7 +53,7 @@ NUMERAL_INDEX_TYPE numeral_index(const char* numeral);
 uint16_t numeral_value(const char** numeral);
 uint16_t numeral_to_uint(const char* numeral);
 bool is_five_numeral_index(const NUMERAL_INDEX_TYPE index);
-char* uint_to_numeral(uint16_t value);
+char* uint_to_numeral(uint16_t value, char result[16]);
 
 extern const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS];
 extern const uint8_t numeral_info_ordered_index[NUMBER_OF_NUMERALS];

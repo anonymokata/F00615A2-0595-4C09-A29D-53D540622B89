@@ -332,57 +332,38 @@ START_TEST(is_five_numeral_index_function_will_return_true_for_V_L_and_D_numeral
 }
 END_TEST
 
-START_TEST(uint_to_numeral_function_will_return_a_dynamically_allocated_string)
+START_TEST(uint_to_numeral_function_will_return_a_pointer_to_the_provided_result_string)
 {
-    char* numeral = uint_to_numeral(nINVALID_NUMERAL);
+    char result[16];
+    char* numeral;
 
+    numeral = uint_to_numeral(nINVALID_NUMERAL, result);
+    ck_assert_ptr_eq(numeral, result);
     ck_assert_str_eq(numeral, "");
-    free(numeral);
 
-    numeral = uint_to_numeral(4);
+    numeral = uint_to_numeral(4, result);
+    ck_assert_ptr_eq(numeral, result);
     ck_assert_str_eq(numeral, "IV");
-    free(numeral);
 }
 END_TEST
 
 START_TEST(uint_to_numeral_function_will_return_expected_combined_numerals)
 {
-    char* numeral;
+    char result[16];
 
-    numeral = uint_to_numeral(3);
-    ck_assert_str_eq(numeral, "III");
-    free(numeral);
-
-    numeral = uint_to_numeral(8);
-    ck_assert_str_eq(numeral, "VIII");
-    free(numeral);
-}
-END_TEST
-
-START_TEST(uint_to_numeral_function_will_allocate_a_buffer_big_enough_to_represent_numerals_up_to_3999)
-{
-    char* numeral;
-
-    numeral = uint_to_numeral(3999);
-    ck_assert_str_eq(numeral, "MMMCMXCIX");
-    free(numeral);
-
-    numeral = uint_to_numeral(3888);
-    ck_assert_str_eq(numeral, "MMMDCCCLXXXVIII");
-    free(numeral);
+    ck_assert_str_eq(uint_to_numeral(3, result), "III");
+    ck_assert_str_eq(uint_to_numeral(8, result), "VIII");
 }
 END_TEST
 
 START_TEST(test_core_uint_to_numeral_conversions)
 {
-    char* numeral;
+    char result[16];
     uint16_t i;
 
     for(i = 0; i < 1000; i++)
     {
-        numeral = uint_to_numeral(i + 1);
-        ck_assert_str_eq(numeral, third_party_numeral[i]);
-        free(numeral);
+        ck_assert_str_eq(uint_to_numeral(i + 1, result), third_party_numeral[i]);
     }
 }
 END_TEST
@@ -401,9 +382,8 @@ void add_conversions_test_case(Suite *s)
     tcase_add_test(tc_conversions, numeral_to_uint_function_will_return_expected_unsigned_integers);
     tcase_add_test(tc_conversions, test_core_numeral_to_uint_conversions);
     tcase_add_test(tc_conversions, is_five_numeral_index_function_will_return_true_for_V_L_and_D_numerals_and_false_otherwise);
-    tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_a_dynamically_allocated_string);
+    tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_a_pointer_to_the_provided_result_string);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_expected_combined_numerals);
-    tcase_add_test(tc_conversions, uint_to_numeral_function_will_allocate_a_buffer_big_enough_to_represent_numerals_up_to_3999);
     tcase_add_test(tc_conversions, test_core_uint_to_numeral_conversions);
     suite_add_tcase(s, tc_conversions);
 }
