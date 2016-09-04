@@ -10,7 +10,7 @@ This implementation follows the next rules:
     - If the numeral is V, L or D you can't have more than one ("D" + "D" = "M" not “DD”).
 
 The calculator will convert character strings of roman numerals to integers internally, execute the requested computation, and convert the integer result back to a roman numeral character string.
-The solution will have a maximum numberic limit of 3999, so the API will allocate a buffer that is big enough to represent the result, and the caller will be responsible for freeing the returned string.
+The solution will have a maximum numeric limit of 3999.
 Tools like Excel and Libre Office Calc offer support for 5 different roman numerals simplifications. This calculator will only support the classic style, which allows only subtracting symbols 'I', 'X', and 'C' from its two next highest values ('IV' and 'IX', 'XL' and 'XC', 'CD' and 'CM'), and forbids subtracting with 'V', 'L', and 'D'.
 
 The following programs are expected to be installed in the system in order to compile and test:

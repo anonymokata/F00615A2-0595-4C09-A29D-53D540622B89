@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 
-char* add(const char* numeral1, const char* numeral2)
+char* add(const char* numeral1, const char* numeral2, char result[16])
 {
     if(is_valid_roman_numeral(numeral1) && is_valid_roman_numeral(numeral2))
     {

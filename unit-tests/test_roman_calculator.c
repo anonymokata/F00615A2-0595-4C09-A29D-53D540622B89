@@ -3,18 +3,26 @@
 
 #include <stdlib.h>
 
-START_TEST(add_function_will_return_NULL_when_a_function_parameter_is_not_a_valid_roman_numeral)
+START_TEST(add_function_will_return_an_empty_string_when_a_function_parameter_is_not_a_valid_roman_numeral)
 {
-    ck_assert_ptr_eq(NULL, add(NULL, NULL));
-    ck_assert_ptr_eq(NULL, add("I", NULL));
-    ck_assert_ptr_eq(NULL, add(NULL, "I"));
-    ck_assert_ptr_eq(NULL, add("", ""));
-    ck_assert_ptr_eq(NULL, add("I", ""));
-    ck_assert_ptr_eq(NULL, add("b", "I"));
-    ck_assert_ptr_eq(NULL, add("VX", "I"));
-    ck_assert_ptr_eq(NULL, add("V", "CCCC"));
-    ck_assert_ptr_eq(NULL, add("V", "IM"));
-    ck_assert_ptr_eq(NULL, add("VV", "M"));
+    char result[16] = "invalid";
+
+    strcpy(result, "invalid");
+    ck_assert_str_eq("", add("", "", result));
+    strcpy(result, "invalid");
+    ck_assert_str_eq("", add("I", "", result));
+    strcpy(result, "invalid");
+    ck_assert_str_eq("", add("", "I", result));
+    strcpy(result, "invalid");
+    ck_assert_str_eq("", add("b", "I", result));
+    strcpy(result, "invalid");
+    ck_assert_str_eq("", add("VX", "I", result));
+    strcpy(result, "invalid");
+    ck_assert_str_eq("", add("V", "CCCC", result));
+    strcpy(result, "invalid");
+    ck_assert_str_eq("", add("V", "IM", result));
+    strcpy(result, "invalid");
+    ck_assert_str_eq("", add("VV", "M", result));
 }
 END_TEST
 
@@ -103,7 +111,7 @@ END_TEST
 void add_roman_calculator_test_case(Suite *s)
 {
     TCase *tc_roman_calculator = tcase_create("Calculator");
-    tcase_add_test(tc_roman_calculator, add_function_will_return_NULL_when_a_function_parameter_is_not_a_valid_roman_numeral);
+    tcase_add_test(tc_roman_calculator, add_function_will_return_an_empty_string_when_a_function_parameter_is_not_a_valid_roman_numeral);
     tcase_add_test(tc_roman_calculator, add_function_will_return_the_addition_of_two_roman_numerals);
     tcase_add_test(tc_roman_calculator, add_function_will_return_wrapped_around_values_when_result_is_greater_than_3999);
     tcase_add_test(tc_roman_calculator, add_function_will_return_an_empty_string_when_result_wrapps_down_to_0);
