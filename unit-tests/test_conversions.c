@@ -222,7 +222,7 @@ START_TEST(test_roman_numeral_info)
     
     ck_assert_int_eq(nM, numeral_info[M].value);
     ck_assert_int_eq(1, numeral_info[M].letter_size);
-    ck_assert_int_eq(65, numeral_info[M].allowed_repetitions);
+    ck_assert_int_eq(3, numeral_info[M].allowed_repetitions);
     ck_assert_str_eq("M", numeral_info[M].numeral);
 }
 END_TEST
@@ -307,12 +307,6 @@ START_TEST(numeral_to_uint_function_will_return_expected_unsigned_integers)
 }
 END_TEST
 
-START_TEST(numeral_to_uint_function_will_wrap_around_the_value_of_numerals_bigger_than_65535)
-{
-    ck_assert_int_eq(numeral_to_uint("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMDXXXVII"), 1);
-}
-END_TEST
-
 START_TEST(test_core_numeral_to_uint_conversions)
 {
     uint16_t i;
@@ -371,12 +365,16 @@ START_TEST(uint_to_numeral_function_will_return_expected_combined_numerals)
 }
 END_TEST
 
-START_TEST(uint_to_numeral_function_will_allocated_a_buffer_big_enough_to_handle_maximum_uint16_t_value)
+START_TEST(uint_to_numeral_function_will_allocate_a_buffer_big_enough_to_represent_numerals_up_to_3999)
 {
     char* numeral;
 
-    numeral = uint_to_numeral(65535);
-    ck_assert_str_eq(numeral, "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMDXXXV");
+    numeral = uint_to_numeral(3999);
+    ck_assert_str_eq(numeral, "MMMCMXCIX");
+    free(numeral);
+
+    numeral = uint_to_numeral(3888);
+    ck_assert_str_eq(numeral, "MMMDCCCLXXXVIII");
     free(numeral);
 }
 END_TEST
@@ -491,12 +489,11 @@ Suite* roman_calculator_suite()
     tcase_add_test(tc_conversions, numeral_value_function_will_advance_numeral_pointer_to_indicate_next_numeral);
     tcase_add_test(tc_conversions, numeral_to_uint_function_will_return_zero_when_no_condition_is_met);
     tcase_add_test(tc_conversions, numeral_to_uint_function_will_return_expected_unsigned_integers);
-    tcase_add_test(tc_conversions, numeral_to_uint_function_will_wrap_around_the_value_of_numerals_bigger_than_65535);
     tcase_add_test(tc_conversions, test_core_numeral_to_uint_conversions);
     tcase_add_test(tc_conversions, is_five_numeral_index_function_will_return_true_for_V_L_and_D_numerals_and_false_otherwise);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_a_dynamically_allocated_string);
     tcase_add_test(tc_conversions, uint_to_numeral_function_will_return_expected_combined_numerals);
-    tcase_add_test(tc_conversions, uint_to_numeral_function_will_allocated_a_buffer_big_enough_to_handle_maximum_uint16_t_value);
+    tcase_add_test(tc_conversions, uint_to_numeral_function_will_allocate_a_buffer_big_enough_to_represent_numerals_up_to_3999);
     tcase_add_test(tc_conversions, test_core_uint_to_numeral_conversions);
     tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_for_unknown_numerals);
     tcase_add_test(tc_conversions, is_valid_roman_numeral_function_will_return_false_if_numerals_I_X_or_C_are_repeated_more_than_three_times);

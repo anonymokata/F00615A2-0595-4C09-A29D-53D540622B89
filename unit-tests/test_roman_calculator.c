@@ -37,15 +37,15 @@ START_TEST(add_function_will_return_the_addition_of_two_roman_numerals)
     ck_assert_str_eq(result, "X");
     free(result);
 
-    result = add("MMMCMXCIX", "I");
-    ck_assert_str_eq(result, "MMMM");
+    result = add("MMMCMXCIX", "II");
+    ck_assert_str_eq(result, "I");
     free(result);
 }
 END_TEST
 
-START_TEST(add_function_will_return_wrapped_around_values_when_result_is_greater_than_65535)
+START_TEST(add_function_will_return_wrapped_around_values_when_result_is_greater_than_3999)
 {
-    char* result = add("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM", "DXXXVII");
+    char* result = add("MMMCMXCIX", "II");
 
     ck_assert_str_eq(result, "I");
     free(result);
@@ -54,7 +54,7 @@ END_TEST
 
 START_TEST(add_function_will_return_an_empty_string_when_result_wrapps_down_to_0)
 {
-    char* result = add("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM", "DXXXVI");
+    char* result = add("MMMCMXCIX", "I");
 
     ck_assert_str_eq(result, "");
     free(result);
@@ -94,8 +94,8 @@ START_TEST(subtract_function_will_return_the_subtraction_of_the_second_parameter
     ck_assert_str_eq(result, "IV");
     free(result);
 
-    result = subtract("MMMM", "I");
-    ck_assert_str_eq(result, "MMMCMXCIX");
+    result = subtract("MMMCMXCIX", "I");
+    ck_assert_str_eq(result, "MMMCMXCVIII");
     free(result);
 }
 END_TEST
@@ -105,7 +105,7 @@ void add_roman_calculator_test_case(Suite *s)
     TCase *tc_roman_calculator = tcase_create("Roman Calculator");
     tcase_add_test(tc_roman_calculator, add_function_will_return_NULL_when_a_function_parameter_is_not_a_valid_roman_numeral);
     tcase_add_test(tc_roman_calculator, add_function_will_return_the_addition_of_two_roman_numerals);
-    tcase_add_test(tc_roman_calculator, add_function_will_return_wrapped_around_values_when_result_is_greater_than_65535);
+    tcase_add_test(tc_roman_calculator, add_function_will_return_wrapped_around_values_when_result_is_greater_than_3999);
     tcase_add_test(tc_roman_calculator, add_function_will_return_an_empty_string_when_result_wrapps_down_to_0);
     tcase_add_test(tc_roman_calculator, subtract_function_will_return_NULL_when_a_function_parameter_is_not_a_valid_roman_numeral);
     tcase_add_test(tc_roman_calculator, subtract_function_will_return_NULL_if_the_first_parameter_is_not_greater_than_second_one);

@@ -17,7 +17,7 @@ const NUMERAL_INFO_TYPE numeral_info[NUMBER_OF_NUMERALS] =
     { nCM,              2,  1,  "CM"    },
     { nC,               1,  3,  "C"     },
     { nD,               1,  1,  "D"     },
-    { nM,               1,  65, "M"     }
+    { nM,               1,  3,  "M"     }
 };
 
 const uint8_t numeral_info_ordered_index[NUMBER_OF_NUMERALS] = {0, 3, 1, 4, 2, 7, 5, 8, 6, 11, 9, 12, 10, 13};
@@ -64,9 +64,10 @@ bool is_five_numeral_index(const NUMERAL_INDEX_TYPE index)
 char* uint_to_numeral(uint16_t value)
 {
     uint8_t i, index;
-    char* numeral = malloc(80);
+    char* numeral = malloc(16);
     char* end = numeral;
 
+    value %= 4000;
     numeral[0] = '\0';
     for(i = (uint8_t)NUMBER_OF_NUMERALS - 1; (0 != value) && (0 != i); i--)
     {
